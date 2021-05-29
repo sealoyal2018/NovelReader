@@ -1,4 +1,5 @@
 ﻿using Caliburn.Micro;
+using Novel.Commands;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
@@ -13,6 +14,7 @@ namespace Novel.Modules.Shell.ViewModels {
     public class ShellViewModel: Conductor<IDocument>, IShell {
 
         private readonly BindableCollection<IDocument> _documents;
+        private readonly CommandBase _searchCommand;
 
         public BindableCollection<IDocument> Documents {
             get {
@@ -20,9 +22,16 @@ namespace Novel.Modules.Shell.ViewModels {
             }
         }
 
+        public CommandBase SearchCommand {
+            get {
+                return _searchCommand;
+            }
+        }
+
         [ImportingConstructor]
         public ShellViewModel([ImportMany]IEnumerable<IDocument> documents) {
             _documents = new BindableCollection<IDocument>(documents);
+            _searchCommand = new CommandBase(Search);
         }
 
         public void MoveWindow() {
@@ -40,6 +49,11 @@ namespace Novel.Modules.Shell.ViewModels {
 
         public void MaximizeWindow() {
             Application.Current.MainWindow.WindowState = Application.Current.MainWindow.WindowState== WindowState.Maximized? WindowState.Normal: WindowState.Maximized;
+        }
+
+        public void Search(object obj) {
+            if (obj is null)
+                return;
         }
     }
 }

@@ -9,8 +9,10 @@
     xmlns:local="clr-namespace:Novel"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="ShellView"
-    Width="800"
-    Height="450"
+    Width="1022"
+    Height="670"
+    MinWidth="1022"
+    MinHeight="670"
     AllowsTransparency="True"
     ResizeMode="CanResizeWithGrip"
     WindowStyle="None"
@@ -69,7 +71,13 @@
                     Grid.Column="1"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center">
-                    <TextBox Width="120" Text="lskdjflaksjf" />
+                    <hc:SearchBar
+                        x:Name="Search"
+                        Width="200"
+                        hc:InfoElement.Placeholder="输入小说名称搜索"
+                        Command="{Binding SearchCommand}"
+                        CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Text}"
+                        Style="{StaticResource SearchBarPlus}" />
                 </Grid>
 
                 <StackPanel
