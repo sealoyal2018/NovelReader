@@ -118,7 +118,10 @@
                     <ColumnDefinition Width="100" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <ListBox ItemsSource="{Binding Documents}">
+                <ListBox
+                    cal:Message.Attach="[Event SelectionChanged]=[Action ChangedDocument($eventArgs)]"
+                    ItemsSource="{Binding Documents}"
+                    SelectedIndex="0">
                     <ListBox.ItemContainerStyle>
                         <Style TargetType="ListBoxItem">
                             <Setter Property="Template">

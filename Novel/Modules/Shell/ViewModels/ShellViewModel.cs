@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace Novel.Modules.Shell.ViewModels {
 
@@ -54,6 +55,12 @@ namespace Novel.Modules.Shell.ViewModels {
         public void Search(object obj) {
             if (obj is null)
                 return;
+        }
+
+
+
+        public void ChangedDocument(SelectionChangedEventArgs e) {
+            ActiveItem = e.AddedItems[0] as IDocument;
         }
     }
 }

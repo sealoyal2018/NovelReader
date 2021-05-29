@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Novel.Controls\Novel.Controls.csproj" />
+    <ProjectReference Include="..\Novel.Service\Novel.Service.csproj" />
   </ItemGroup>
 
   <ItemGroup>

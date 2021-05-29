@@ -90,7 +90,6 @@ namespace Novel.Service {
             var res = await _restClient.ExecuteAsync(req);
             if (res.IsSuccessful) {
                 var content = HttpUtility.UrlDecode(res.RawBytes, Encoding.GetEncoding("gbk"));
-                //var content = res.Content;
                 #region 解析 html 文档, 获取小说相关信息
                 _htmlDocument.LoadHtml(content);
                 var siteBoxDiv = _htmlDocument.GetElementbyId("sitebox");
@@ -166,10 +165,11 @@ namespace Novel.Service {
         /// <returns></returns>
         public async Task<List<Recommend>> GetRecommendNovel() {
             var ret = new List<Recommend>();
-            var res = await _httpClient.GetAsync("/");
-            if (!res.IsSuccessStatusCode)
+            var req = new RestRequest("/", Method.GET);
+            var res = await _restClient.ExecuteAsync(req);
+            if (!res.IsSuccessful)
                 return ret;
-            var html = await res.Content.ReadAsStringAsync();
+            var html = HttpUtility.UrlDecode(res.RawBytes, Encoding.GetEncoding("gbk"));
             _htmlDocument.LoadHtml(html);
             var mainDiv = _htmlDocument.GetElementbyId("main");
             var div = mainDiv.SelectNodes("./div");
@@ -233,10 +233,11 @@ namespace Novel.Service {
                     break;
             }
 
-            var res = await _httpClient.GetAsync(addres);
-            if (!res.IsSuccessStatusCode)
+            var req = new RestRequest(addres, Method.GET);
+            var res = await _restClient.ExecuteAsync(req);
+            if (!res.IsSuccessful)
                 return ret;
-            var html = await res.Content.ReadAsStringAsync();
+            var html = HttpUtility.UrlDecode(res.RawBytes, Encoding.GetEncoding("gbk"));
             return GetNovelsFromSiteboxDiv(html);
         }
 
