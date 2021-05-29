@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\Images\close.png" />
+    <None Remove="Resources\Images\logo.png" />
+    <None Remove="Resources\Images\zuidahua.png" />
+    <None Remove="Resources\Images\zuixiaohua.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Caliburn.Micro" Version="4.0.173" />
+    <PackageReference Include="HandyControl" Version="3.1.0" />
+    <PackageReference Include="System.ComponentModel.Composition" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Novel.Controls\Novel.Controls.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\Images\close.png" />
+    <Resource Include="Resources\Images\logo.png" />
+    <Resource Include="Resources\Images\zuidahua.png" />
+    <Resource Include="Resources\Images\zuixiaohua.png" />
+  </ItemGroup>
+
+</Project>
