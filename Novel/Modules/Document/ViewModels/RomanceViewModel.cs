@@ -1,14 +1,18 @@
 ﻿using Caliburn.Micro;
+using Novel.Service;
 using Novel.Service.Models;
 using System.ComponentModel.Composition;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Novel.Modules.Document.ViewModels {
     
     [Export(typeof(IDocument))]
-    public class RomanceViewModel : PropertyChangedBase, IDocument {
+    public class RomanceViewModel : Screen, IDocument {
         private readonly string _name;
         private readonly string _icon;
         private readonly bool _show;
+        private readonly NovelService _service;
         private BindableCollection<NovelInfo> novels;
 
         public string Name {
@@ -40,7 +44,8 @@ namespace Novel.Modules.Document.ViewModels {
             }
         }
 
-        public RomanceViewModel() {
+        [ImportingConstructor]
+        public RomanceViewModel(NovelService service) {
             this._name = "言情女生";
             this._icon = "";
             _show = true;
@@ -256,8 +261,12 @@ namespace Novel.Modules.Document.ViewModels {
                     }
                 },
             };
+            this._service = service;
         }
+        protected override Task OnActivateAsync(CancellationToken cancellationToken) {
 
+            return base.OnActivateAsync(cancellationToken);
+        }
 
 
     }

@@ -1,20 +1,23 @@
 ﻿using Caliburn.Micro;
+using Novel.Service;
 using Novel.Service.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Novel.Modules.Document.ViewModels {
 
     [Export(typeof(IDocument))]
-    public class RecommendViewModel : PropertyChangedBase, IDocument {
+    public class RecommendViewModel : Screen, IDocument {
 
         private readonly string _name;
         private readonly string _icon;
         private readonly bool _show;
+        private readonly NovelService _service;
         private BindableCollection<Recommend> recommends;
         public string Name {
             get {
@@ -44,7 +47,9 @@ namespace Novel.Modules.Document.ViewModels {
                 NotifyOfPropertyChange(nameof(Recommends));
             }
         }
-        public RecommendViewModel() {
+
+        [ImportingConstructor]
+        public RecommendViewModel(NovelService service) {
             this._name = "热门推荐";
             this._icon = "";
             this._show = true;
@@ -537,7 +542,13 @@ namespace Novel.Modules.Document.ViewModels {
                     }
                 },
             };
+            this._service = service;
         }
 
+        protected override async Task OnActivateAsync(CancellationToken cancellationToken) {
+            var ret = await this._service.GetRecommendNovel();
+            Recommends = new BindableCollection<Recommend>(ret);
+            await base.OnActivateAsync(cancellationToken);
+        }
     }
 }

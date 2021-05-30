@@ -126,49 +126,79 @@
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
+                                <RowDefinition Height="120" />
                                 <RowDefinition Height="auto" />
-                                <RowDefinition Height="2" />
                                 <RowDefinition Height="*" />
                             </Grid.RowDefinitions>
                             <Grid Margin="0,0,4,4">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="auto" />
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
-                                <Image Margin="0,0,4,0" Source="{Binding Novels[0].ImageSource}" />
-                                <StackPanel
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Grid Grid.RowSpan="3">
+                                    <Image
+                                        Height="125"
+                                        Margin="0,0,4,0"
+                                        Source="{Binding Novels[0].ImageSource}" />
+                                </Grid>
+                                <TextBlock
                                     Grid.Column="1"
                                     Margin="4,0,0,4"
-                                    HorizontalAlignment="Left">
-                                    <TextBlock Margin="0,0,0,4" Text="{Binding Novels[0].Title}" />
-                                    <TextBlock Margin="0,4" Text="{Binding Novels[0].Author}" />
-                                    <TextBlock
-                                        Margin="0,4,0,0"
-                                        Text="{Binding Novels[0].Summary}"
-                                        TextWrapping="Wrap" />
-                                </StackPanel>
+                                    Text="{Binding Novels[0].Title}" />
+                                <TextBlock
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    Margin="4,2,0,2"
+                                    Text="{Binding Novels[0].Author}" />
+                                <TextBlock
+                                    Grid.Row="2"
+                                    Grid.Column="1"
+                                    Margin="4,2,0,0"
+                                    Text="{Binding Novels[0].Summary}"
+                                    TextWrapping="Wrap" />
                             </Grid>
-                            <Grid Grid.Column="1" Margin="4,0,0,0">
+                            <Grid Grid.Column="1" Margin="4,0,0,4">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="auto" />
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
-                                <Image Margin="0,0,4,4" Source="{Binding Novels[1].ImageSource}" />
-                                <StackPanel
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Grid Grid.RowSpan="3">
+                                    <Image
+                                        Margin="0,0,4,0"
+                                        Source="{Binding Novels[1].ImageSource}"
+                                        Stretch="Uniform" />
+                                </Grid>
+                                <TextBlock
                                     Grid.Column="1"
-                                    Margin="4,0,0,4"
-                                    HorizontalAlignment="Left">
-                                    <TextBlock Margin="0,0,0,1" Text="{Binding Novels[1].Title}" />
-                                    <TextBlock Margin="0,1" Text="{Binding Novels[1].Author}" />
-                                    <TextBlock
-                                        Margin="0,1,0,0"
-                                        Text="{Binding Novels[1].Summary}"
-                                        TextWrapping="Wrap" />
-                                </StackPanel>
+                                    Margin="4,0,0,2"
+                                    Text="{Binding Novels[1].Title}" />
+                                <TextBlock
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    Margin="4,2,0,2"
+                                    Text="{Binding Novels[0].Author}" />
+                                <TextBlock
+                                    Grid.Row="2"
+                                    Grid.Column="1"
+                                    Margin="4,2,0,0"
+                                    Text="{Binding Novels[1].Summary}"
+                                    TextWrapping="Wrap" />
                             </Grid>
                             <Border
                                 Grid.Row="1"
                                 Grid.ColumnSpan="2"
+                                Height="2"
+                                Margin="0,4"
                                 Background="Red"
                                 BorderBrush="Red"
                                 BorderThickness="1" />
