@@ -13,27 +13,24 @@ namespace Novel.Modules.Document.ViewModels {
 
     [Export(typeof(IDocument))]
     public class RecommendViewModel : Screen, IDocument {
-
-        private readonly string _name;
-        private readonly string _icon;
-        private readonly bool _show;
         private readonly NovelService _service;
         private BindableCollection<Recommend> recommends;
+        private bool showProgressBar;
         public string Name {
             get {
-                return _name;
+                return "热门推荐";
             }
         }
 
         public string Icon {
             get {
-                return _icon;
+                return string.Empty;
             }
         }
 
         public bool Show {
             get {
-                return _show;
+                return true;
             }
         }
 
@@ -48,12 +45,25 @@ namespace Novel.Modules.Document.ViewModels {
             }
         }
 
+        public int Index {
+            get {
+                return 0;
+            }
+        }
+
+        public bool ShowProgressBar {
+            get {
+                return showProgressBar;
+            }
+
+            set {
+                showProgressBar = value;
+                NotifyOfPropertyChange(nameof(ShowProgressBar));
+            }
+        }
+
         [ImportingConstructor]
         public RecommendViewModel(NovelService service) {
-            this._name = "热门推荐";
-            this._icon = "";
-            this._show = true;
-
             recommends = new BindableCollection<Recommend>() {
                 new Recommend {
                     Type = "玄幻奇幻",
@@ -546,9 +556,11 @@ namespace Novel.Modules.Document.ViewModels {
         }
 
         protected override async Task OnActivateAsync(CancellationToken cancellationToken) {
+            ShowProgressBar = true;
             var ret = await this._service.GetRecommendNovel();
             Recommends = new BindableCollection<Recommend>(ret);
             await base.OnActivateAsync(cancellationToken);
+            ShowProgressBar = false;
         }
     }
 }

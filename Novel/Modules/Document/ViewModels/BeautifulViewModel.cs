@@ -9,9 +9,6 @@ namespace Novel.Modules.Document.ViewModels {
 
     [Export(typeof(IDocument))]
     public class BeautifulViewModel : Screen, IDocument {
-        private readonly string _name;
-        private readonly string _icon;
-        private readonly bool _show;
         private readonly NovelService _service;
         private BindableCollection<NovelInfo> novels;
         private NovelListViewModel novelList;
@@ -19,22 +16,27 @@ namespace Novel.Modules.Document.ViewModels {
 
         public string Name {
             get {
-                return _name;
+                return "唯美纯爱";
             }
         }
 
         public string Icon {
             get {
-                return _icon;
+                return string.Empty;
             }
         }
 
         public bool Show {
             get {
-                return _show;
+                return true;
             }
         }
 
+        public int Index {
+            get {
+                return 1;
+            }
+        }
 
         public BindableCollection<NovelInfo> Novels {
             get {
@@ -68,11 +70,9 @@ namespace Novel.Modules.Document.ViewModels {
             }
         }
 
+
         [ImportingConstructor]
         public BeautifulViewModel(NovelService service) {
-            this._name = "唯美纯爱";
-            this._icon = "";
-            _show = true;
             novels = new BindableCollection<NovelInfo>() {
                 new NovelInfo {
                     Href = "/book/164873/",

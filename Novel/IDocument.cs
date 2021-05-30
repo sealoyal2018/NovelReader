@@ -9,6 +9,7 @@ namespace Novel {
         public string Name { get; }
         public string Icon { get; }
         public bool Show { get; }
+        public int Index { get; }
 
     }
 }

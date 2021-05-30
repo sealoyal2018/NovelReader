@@ -160,7 +160,15 @@
                     Grid.Column="1"
                     ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                     ScrollViewer.VerticalScrollBarVisibility="Auto">
-                    <ContentControl x:Name="ActiveItem" Margin="8" />
+                    <Grid Margin="8">
+                        <ContentControl x:Name="ActiveItem" />
+                        <hc:CircleProgressBar
+                            Width="100"
+                            Height="100"
+                            IsIndeterminate="True"
+                            Style="{StaticResource ProgressBarDangerCircle}"
+                            Visibility="{Binding ShowProgressBar, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                    </Grid>
                 </hc:ScrollViewer>
             </Grid>
         </Grid>

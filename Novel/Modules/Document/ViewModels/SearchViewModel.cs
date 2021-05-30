@@ -7,31 +7,26 @@ using System.Windows.Controls;
 namespace Novel.Modules.Document.ViewModels {
     [Export(typeof(SearchViewModel))]
     public class SearchViewModel : PropertyChangedBase, IDocument {
-        private readonly string _name;
-        private readonly string _icon;
-        private readonly bool _show;
-
         public string Name {
             get {
-                return _name;
+                return "搜   索";
             }
         }
         public string Icon {
             get {
-                return _icon;
+                return string.Empty;
             }
         }
         public bool Show {
             get {
-                return _show;
+                return false;
             }
         }
 
-
-        public SearchViewModel() {
-            this._name = "搜索";
-            this._icon = "";
-            _show = false;
+        public int Index {
+            get {
+                return 5;
+            }
         }
 
     }

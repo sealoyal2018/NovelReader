@@ -17,6 +17,7 @@ namespace Novel.Modules.Shell.ViewModels {
 
         private readonly BindableCollection<IDocument> _documents;
         private readonly CommandBase _searchCommand;
+        private bool showProgressBar;
 
         public BindableCollection<IDocument> Documents {
             get {
@@ -30,10 +31,22 @@ namespace Novel.Modules.Shell.ViewModels {
             }
         }
 
+        public bool ShowProgressBar {
+            get {
+                return showProgressBar;
+            }
+
+            set {
+                showProgressBar = value;
+                NotifyOfPropertyChange(nameof(ShowProgressBar));
+            }
+        }
+
         [ImportingConstructor]
         public ShellViewModel([ImportMany]IEnumerable<IDocument> documents) {
-            _documents = new BindableCollection<IDocument>(documents);
+            _documents = new BindableCollection<IDocument>(documents.Where(x=> x.Show).OrderBy(x=> x.Index));
             _searchCommand = new CommandBase(Search);
+            ActiveItem = _documents.First();
         }
 
         public void MoveWindow() {
@@ -76,7 +89,9 @@ namespace Novel.Modules.Shell.ViewModels {
         /// </summary>
         /// <param name="e"></param>
         public void ChangedDocument(SelectionChangedEventArgs e) {
+            ShowProgressBar = true;
             ActiveItem = e.AddedItems[0] as IDocument;
+            ShowProgressBar = false;
         }
 
     }
