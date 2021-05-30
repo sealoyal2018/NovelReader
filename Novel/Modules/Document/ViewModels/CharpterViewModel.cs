@@ -1,4 +1,5 @@
 ﻿using Caliburn.Micro;
+using Novel.Modules.Shell.ViewModels;
 using Novel.Service;
 using Novel.Service.Models;
 using System.ComponentModel.Composition;
@@ -14,6 +15,7 @@ namespace Novel.Modules.Document.ViewModels {
         /// 小说服务
         /// </summary>
         private readonly NovelService _service;
+        private readonly ContentViewModel _contentViewModel;
 
         /// <summary>
         /// 当前小说章节列表
@@ -72,8 +74,9 @@ namespace Novel.Modules.Document.ViewModels {
         }
 
         [ImportingConstructor]
-        public CharpterViewModel(NovelService service) {
+        public CharpterViewModel(NovelService service, ContentViewModel contentViewModel) {
             this._service = service;
+            this._contentViewModel = contentViewModel;
             novel = new NovelInfo();
             charpters = new BindableCollection<NovelCharpter>();
         }
@@ -87,6 +90,12 @@ namespace Novel.Modules.Document.ViewModels {
             var ret = await this._service.GetCharpters(this.Novel.Href);
             this.Charpters = new BindableCollection<NovelCharpter>(ret);
             await base.OnActivateAsync(cancellationToken);
+        }
+
+        public void ToContent(NovelCharpter charpter) {
+            var shell = IoC.Get<ShellViewModel>();
+            this._contentViewModel.Href = charpter.Href;
+            shell.ActiveItem = this._contentViewModel;
         }
 
     }

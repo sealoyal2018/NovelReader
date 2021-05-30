@@ -1,5 +1,6 @@
 ﻿using Caliburn.Micro;
 using Novel.Commands;
+using Novel.Modules.Document.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
@@ -45,7 +46,7 @@ namespace Novel.Modules.Shell.ViewModels {
         [ImportingConstructor]
         public ShellViewModel([ImportMany]IEnumerable<IDocument> documents) {
             _documents = new BindableCollection<IDocument>(documents.Where(x=> x.Show).OrderBy(x=> x.Index));
-            _searchCommand = new CommandBase(Search);
+            _searchCommand = new CommandBase(OpenSearch);
             ActiveItem = _documents.First();
         }
 
@@ -76,12 +77,15 @@ namespace Novel.Modules.Shell.ViewModels {
         }
 
         /// <summary>
-        /// 搜索
+        /// 打开搜索页面
         /// </summary>
         /// <param name="obj"></param>
-        public void Search(object obj) {
+        public void OpenSearch(object obj) {
             if (obj is null)
                 return;
+            var searchViewModel = IoC.Get<SearchViewModel>();
+            searchViewModel.Keyword = obj.ToString();
+            ActiveItem = searchViewModel;
         }
 
         /// <summary>

@@ -345,7 +345,7 @@ namespace Novel.Service {
             var elements = pElements.Take(pElements.Count - 2);
             var contentBuilder = new StringBuilder();
             foreach(var p in elements) {
-                contentBuilder.AppendLine(p.InnerText);
+                contentBuilder.AppendLine($"\t{p.InnerText}");
             }
             ret.Content = contentBuilder.ToString();
             return ret;
