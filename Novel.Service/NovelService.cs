@@ -292,15 +292,63 @@ namespace Novel.Service {
         /// <summary>
         /// 获取特定小说章节
         /// </summary>
-        public Task GetCharpters() {
-            return Task.CompletedTask;
+        public async Task<List<NovelCharpter>> GetCharpters(string url) {
+            var ret = new List<NovelCharpter>();
+            var req = new RestRequest(url, Method.GET);
+            if(this.cookies.Count > 0)
+                req.AddHeader("cookie", string.Join(';', cookies));
+            var res = await this._restClient.ExecuteAsync(req);
+            if (!res.IsSuccessful) {
+                return ret;
+            }
+            var html = HttpUtility.UrlDecode(res.RawBytes, Encoding.GetEncoding("gbk"));
+            _htmlDocument.LoadHtml(html);
+            // 所有章节
+            var ul = _htmlDocument.GetElementbyId("chapterList");
+            var aElements = ul.SelectNodes(".//li/a");
+            foreach(var ele in aElements) {
+                var href = ele.GetAttributeValue("href", string.Empty);
+                var title = ele.InnerText;
+                ret.Add(new NovelCharpter { Href = href, Title = title });
+            }
+            // 最新章节 -- 后续可用
+            //var recentlyCharpter = "";
+            //var newlist = _htmlDocument.GetElementbyId("newlist");
+            //var tooltip = newlist.SelectSingleNode(".//div/h2").InnerText;
+            //ul = newlist.SelectSingleNode(".//ul");
+            //aElements = ul.SelectNodes(".//li/a");
+            //foreach(var ele in aElements) {
+            //    var href = ele.GetAttributeValue("href", string.Empty);
+            //    var title = ele.InnerText;
+            //}
+            return ret;
         }
 
         /// <summary>
         /// 获取小说内容
         /// </summary>
-        public Task GetNovelContent() {
-            return Task.CompletedTask;
+        public async Task<NovelContent> GetNovelContent(string url) {
+            var ret = new NovelContent();
+            var req = new RestRequest(url, Method.GET);
+            if (this.cookies.Count > 0)
+                req.AddHeader("cookie", string.Join(';', cookies));
+            var res = await this._restClient.ExecuteAsync(req);
+            if (!res.IsSuccessful) {
+                return ret;
+            }
+            var html = HttpUtility.UrlDecode(res.RawBytes, Encoding.GetEncoding("gbk"));
+            _htmlDocument.LoadHtml(html);
+            var mainDiv = _htmlDocument.GetElementbyId("mlfy_main_text");
+            ret.Title = mainDiv.SelectSingleNode(".//h1").InnerText;
+            var contentDiv = _htmlDocument.GetElementbyId("TextContent");
+            var pElements = contentDiv.SelectNodes(".//p");
+            var elements = pElements.Take(pElements.Count - 2);
+            var contentBuilder = new StringBuilder();
+            foreach(var p in elements) {
+                contentBuilder.AppendLine(p.InnerText);
+            }
+            ret.Content = contentBuilder.ToString();
+            return ret;
         }
     }
 }
