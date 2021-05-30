@@ -1,4 +1,5 @@
 ﻿using Caliburn.Micro;
+using Novel.Service;
 using Novel.Service.Models;
 using System.ComponentModel.Composition;
 using System.Threading;
@@ -11,6 +12,7 @@ namespace Novel.Modules.Document.ViewModels {
         private readonly string _name;
         private readonly string _icon;
         private readonly bool _show;
+        private readonly NovelService _service;
         private BindableCollection<NovelInfo> novels;
         private NovelListViewModel novelList;
         private HelloViewModel helloViewModel;
@@ -66,7 +68,8 @@ namespace Novel.Modules.Document.ViewModels {
             }
         }
 
-        public BeautifulViewModel() {
+        [ImportingConstructor]
+        public BeautifulViewModel(NovelService service) {
             this._name = "唯美纯爱";
             this._icon = "";
             _show = true;
@@ -284,10 +287,13 @@ namespace Novel.Modules.Document.ViewModels {
             };
             novelList = new NovelListViewModel(novels);
             helloViewModel = new HelloViewModel();
+            this._service = service;
         }
 
-        protected override Task OnActivateAsync(CancellationToken cancellationToken) {
-            return base.OnActivateAsync(cancellationToken);
+        protected override async Task OnActivateAsync(CancellationToken cancellationToken) {
+            var ret = await this._service.GetHotNovels(NovelType.Romance);
+            this.Novels = new BindableCollection<NovelInfo>(ret);
+            await  base.OnActivateAsync(cancellationToken);
         }
     }
 }

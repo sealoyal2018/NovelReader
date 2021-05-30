@@ -212,7 +212,7 @@ namespace Novel.Service {
         /// 获取其他小说列表(言情, 玄幻, 都市, 武侠, 唯美..)
         /// </summary>
         /// <returns>小说类型</returns>
-        public async Task<List<NovelInfo>> GetRomances(NovelType type = NovelType.Romance) {
+        public async Task<List<NovelInfo>> GetHotNovels(NovelType type = NovelType.Romance) {
             var ret = new List<NovelInfo>();
             var addres = "/yanqing";
             switch (type) {

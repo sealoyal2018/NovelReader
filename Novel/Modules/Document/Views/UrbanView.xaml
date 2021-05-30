@@ -22,52 +22,54 @@
                         Margin="8"
                         BorderBrush="DarkOliveGreen"
                         BorderThickness="0,0,0,0.2">
-                        <Grid>
+                        <Grid Height="150" Margin="0,0,0,4">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="107" />
+                                <ColumnDefinition Width="110" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="auto" />
+                            </Grid.RowDefinitions>
                             <Image
-                                Height=" 150"
+                                Grid.RowSpan="4"
                                 Margin="0,0,4,0"
-                                Source="{Binding ImageSource}" />
-                            <Grid Grid.Column="2" Margin="4,0,0,0">
+                                Source="{Binding ImageSource}"
+                                Stretch="Fill" />
+
+                            <Grid Grid.Column="1" Margin="4,0,0,2">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="auto" />
                                 </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="auto" />
-                                    <RowDefinition Height="auto" />
-                                    <RowDefinition Height="*" />
-                                    <RowDefinition Height="30" />
-                                </Grid.RowDefinitions>
-                                <TextBlock Margin="0,0,0,4" Text="{Binding Title}" />
+                                <TextBlock Text="{Binding Title}" />
                                 <TextBlock Grid.Column="1" Text="{Binding UpDateTime}" />
-                                <StackPanel
-                                    Grid.Row="1"
-                                    Grid.ColumnSpan="2"
-                                    Margin="0,4"
-                                    HorizontalAlignment="Left"
-                                    VerticalAlignment="Center"
-                                    Orientation="Horizontal">
-                                    <TextBlock Margin="0,0,0,4" Text="{Binding Type, StringFormat=子类: {0}}" />
-                                    <TextBlock Margin="4,0" Text="{Binding Status, StringFormat=状态: {0}}" />
-                                    <TextBlock Margin="4,0,0,0" Text="{Binding WordCount, StringFormat=字数: {0}}" />
-                                </StackPanel>
-                                <TextBlock
-                                    Grid.Row="2"
-                                    Grid.ColumnSpan="2"
-                                    Margin="0,4,0,4"
-                                    Text="{Binding Summary}"
-                                    TextWrapping="Wrap" />
-                                <TextBlock
-                                    Grid.Row="3"
-                                    Grid.ColumnSpan="2"
-                                    Margin="0,4,0,0"
-                                    Text="{Binding LastCharpter.Title, StringFormat=最新章节:{0}}"
-                                    TextWrapping="NoWrap" />
                             </Grid>
+                            <StackPanel
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                Margin="0,2"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Orientation="Horizontal">
+                                <TextBlock Margin="0,0,0,4" Text="{Binding Type, StringFormat=子类: {0}}" />
+                                <TextBlock Margin="4,0" Text="{Binding Status, StringFormat=状态: {0}}" />
+                                <TextBlock Margin="4,0,0,0" Text="{Binding WordCount, StringFormat=字数: {0}}" />
+                            </StackPanel>
+                            <TextBlock
+                                Grid.Row="2"
+                                Grid.Column="1"
+                                Margin="0,2,0,2"
+                                Text="{Binding Summary}"
+                                TextWrapping="Wrap" />
+                            <TextBlock
+                                Grid.Row="3"
+                                Grid.Column="1"
+                                Margin="0,4,0,0"
+                                Text="{Binding LastCharpter.Title, StringFormat=最新章节:{0}}"
+                                TextWrapping="NoWrap" />
                         </Grid>
                     </Border>
                 </DataTemplate>
