@@ -1,10 +1,12 @@
 ﻿using Caliburn.Micro;
 using Novel.Service.Models;
 using System.ComponentModel.Composition;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Novel.Modules.Document.ViewModels {
     [Export(typeof(IDocument))]
-    public class FantasyViewModel : PropertyChangedBase, IDocument {
+    public class FantasyViewModel : Screen, IDocument {
         private readonly string _name;
         private readonly string _icon;
         private readonly bool _show;
@@ -253,6 +255,10 @@ namespace Novel.Modules.Document.ViewModels {
                     }
                 },
             };
+        }
+
+        protected override Task OnActivateAsync(CancellationToken cancellationToken) {
+            return base.OnActivateAsync(cancellationToken);
         }
     }
 }

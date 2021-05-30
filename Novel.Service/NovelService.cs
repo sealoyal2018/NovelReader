@@ -2,6 +2,7 @@
 using Novel.Service.Models;
 using RestSharp;
 using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +12,7 @@ namespace Novel.Service {
     /// <summary>
     /// 铅笔小说网站数据接口
     /// </summary>
+    [Export(typeof(NovelService))]
     public class NovelService {
 
         /// <summary>
