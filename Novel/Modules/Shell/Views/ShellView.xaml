@@ -9,9 +9,9 @@
     xmlns:local="clr-namespace:Novel"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="ShellView"
-    Width="1022"
+    Width="1083"
     Height="670"
-    MinWidth="1022"
+    MinWidth="1083"
     MinHeight="670"
     AllowsTransparency="True"
     ResizeMode="CanResizeWithGrip"
@@ -160,7 +160,7 @@
                     Grid.Column="1"
                     ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                     ScrollViewer.VerticalScrollBarVisibility="Auto">
-                    <ContentControl x:Name="ActiveItem" />
+                    <ContentControl x:Name="ActiveItem" Margin="8" />
                 </hc:ScrollViewer>
             </Grid>
         </Grid>

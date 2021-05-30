@@ -45,6 +45,6 @@
         /// 类型
         /// </summary>
         public string Type { get; set; }
-        public string WordCount { get; internal set; }
+        public string WordCount { get; set; }
     }
 }

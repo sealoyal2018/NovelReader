@@ -84,7 +84,7 @@
                         Margin="4"
                         Background="White"
                         BorderBrush="#75A4B4"
-                        BorderThickness="1,1,1,1"
+                        BorderThickness="0.2,2,0.3,0.2"
                         Header="{Binding Type}">
                         <GroupBox.Template>
                             <ControlTemplate TargetType="GroupBox">
@@ -98,7 +98,7 @@
                                             <RowDefinition Height="*" />
                                         </Grid.RowDefinitions>
                                         <Grid Background="#F7F7F7">
-                                            <Border BorderBrush="Black" BorderThickness="1">
+                                            <Border BorderBrush="Black" BorderThickness="0">
                                                 <StackPanel
                                                     HorizontalAlignment="Left"
                                                     VerticalAlignment="Center"
