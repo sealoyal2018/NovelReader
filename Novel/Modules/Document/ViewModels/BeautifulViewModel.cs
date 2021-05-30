@@ -1,4 +1,5 @@
 ﻿using Caliburn.Micro;
+using Novel.Modules.Shell.ViewModels;
 using Novel.Service;
 using Novel.Service.Models;
 using System.ComponentModel.Composition;
@@ -10,6 +11,8 @@ namespace Novel.Modules.Document.ViewModels {
     [Export(typeof(IDocument))]
     public class BeautifulViewModel : Screen, IDocument {
         private readonly NovelService _service;
+        private readonly ContentViewModel _contentViewModel;
+        private readonly CharpterViewModel _charpterViewModel;
         private BindableCollection<NovelInfo> novels;
         private NovelListViewModel novelList;
         private HelloViewModel helloViewModel;
@@ -72,222 +75,13 @@ namespace Novel.Modules.Document.ViewModels {
 
 
         [ImportingConstructor]
-        public BeautifulViewModel(NovelService service) {
-            novels = new BindableCollection<NovelInfo>() {
-                new NovelInfo {
-                    Href = "/book/164873/",
-                    ImageSource = "https://www.23qb.net/files/article/image/164/164873/164873s.jpg",
-                    Type = "言情女生",
-                    UpDateTime = "2021-05-30",
-                    Title = "都市无敌战神",
-                    Summary = "五年前，被陷害入狱！五年后，他荣耀归来，天下权势，尽握手中！我所失去的，终会千百倍的拿回来！…",
-                    Status = "连载中",
-                    WordCount = "4074653",
-                    LastCharpter = new NovelCharpter {
-                        Title = "第1736章 震惊遗落大陆",
-                        Href = "/book/164873/84252144.html",
-                    }
-                },
-                new NovelInfo {
-                    Href = "/book/164873/",
-                    ImageSource = "https://www.23qb.net/files/article/image/164/164873/164873s.jpg",
-                    Type = "言情女生",
-                    UpDateTime = "2021-05-30",
-                    Title = "都市无敌战神",
-                    Summary = "五年前，被陷害入狱！五年后，他荣耀归来，天下权势，尽握手中！我所失去的，终会千百倍的拿回来！…",
-                    Status = "连载中",
-                    WordCount = "4074653",
-                    LastCharpter = new NovelCharpter {
-                        Title = "第1736章 震惊遗落大陆",
-                        Href = "/book/164873/84252144.html",
-                    }
-                },
-                new NovelInfo {
-                    Href = "/book/164873/",
-                    ImageSource = "https://www.23qb.net/files/article/image/164/164873/164873s.jpg",
-                    Type = "言情女生",
-                    UpDateTime = "2021-05-30",
-                    Title = "都市无敌战神",
-                    Summary = "五年前，被陷害入狱！五年后，他荣耀归来，天下权势，尽握手中！我所失去的，终会千百倍的拿回来！…",
-                    Status = "连载中",
-                    WordCount = "4074653",
-                    LastCharpter = new NovelCharpter {
-                        Title = "第1736章 震惊遗落大陆",
-                        Href = "/book/164873/84252144.html",
-                    }
-                },
-                new NovelInfo {
-                    Href = "/book/164873/",
-                    ImageSource = "https://www.23qb.net/files/article/image/164/164873/164873s.jpg",
-                    Type = "言情女生",
-                    UpDateTime = "2021-05-30",
-                    Title = "都市无敌战神",
-                    Summary = "五年前，被陷害入狱！五年后，他荣耀归来，天下权势，尽握手中！我所失去的，终会千百倍的拿回来！…",
-                    Status = "连载中",
-                    WordCount = "4074653",
-                    LastCharpter = new NovelCharpter {
-                        Title = "第1736章 震惊遗落大陆",
-                        Href = "/book/164873/84252144.html",
-                    }
-                },
-                new NovelInfo {
-                    Href = "/book/164873/",
-                    ImageSource = "https://www.23qb.net/files/article/image/164/164873/164873s.jpg",
-                    Type = "言情女生",
-                    UpDateTime = "2021-05-30",
-                    Title = "都市无敌战神",
-                    Summary = "五年前，被陷害入狱！五年后，他荣耀归来，天下权势，尽握手中！我所失去的，终会千百倍的拿回来！…",
-                    Status = "连载中",
-                    WordCount = "4074653",
-                    LastCharpter = new NovelCharpter {
-                        Title = "第1736章 震惊遗落大陆",
-                        Href = "/book/164873/84252144.html",
-                    }
-                },
-                new NovelInfo {
-                    Href = "/book/164873/",
-                    ImageSource = "https://www.23qb.net/files/article/image/164/164873/164873s.jpg",
-                    Type = "言情女生",
-                    UpDateTime = "2021-05-30",
-                    Title = "都市无敌战神",
-                    Summary = "五年前，被陷害入狱！五年后，他荣耀归来，天下权势，尽握手中！我所失去的，终会千百倍的拿回来！…",
-                    Status = "连载中",
-                    WordCount = "4074653",
-                    LastCharpter = new NovelCharpter {
-                        Title = "第1736章 震惊遗落大陆",
-                        Href = "/book/164873/84252144.html",
-                    }
-                },
-                new NovelInfo {
-                    Href = "/book/164873/",
-                    ImageSource = "https://www.23qb.net/files/article/image/164/164873/164873s.jpg",
-                    Type = "言情女生",
-                    UpDateTime = "2021-05-30",
-                    Title = "都市无敌战神",
-                    Summary = "五年前，被陷害入狱！五年后，他荣耀归来，天下权势，尽握手中！我所失去的，终会千百倍的拿回来！…",
-                    Status = "连载中",
-                    WordCount = "4074653",
-                    LastCharpter = new NovelCharpter {
-                        Title = "第1736章 震惊遗落大陆",
-                        Href = "/book/164873/84252144.html",
-                    }
-                },
-                new NovelInfo {
-                    Href = "/book/164873/",
-                    ImageSource = "https://www.23qb.net/files/article/image/164/164873/164873s.jpg",
-                    Type = "言情女生",
-                    UpDateTime = "2021-05-30",
-                    Title = "都市无敌战神",
-                    Summary = "五年前，被陷害入狱！五年后，他荣耀归来，天下权势，尽握手中！我所失去的，终会千百倍的拿回来！…",
-                    Status = "连载中",
-                    WordCount = "4074653",
-                    LastCharpter = new NovelCharpter {
-                        Title = "第1736章 震惊遗落大陆",
-                        Href = "/book/164873/84252144.html",
-                    }
-                },
-                new NovelInfo {
-                    Href = "/book/164873/",
-                    ImageSource = "https://www.23qb.net/files/article/image/164/164873/164873s.jpg",
-                    Type = "言情女生",
-                    UpDateTime = "2021-05-30",
-                    Title = "都市无敌战神",
-                    Summary = "五年前，被陷害入狱！五年后，他荣耀归来，天下权势，尽握手中！我所失去的，终会千百倍的拿回来！…",
-                    Status = "连载中",
-                    WordCount = "4074653",
-                    LastCharpter = new NovelCharpter {
-                        Title = "第1736章 震惊遗落大陆",
-                        Href = "/book/164873/84252144.html",
-                    }
-                },
-                new NovelInfo {
-                    Href = "/book/164873/",
-                    ImageSource = "https://www.23qb.net/files/article/image/164/164873/164873s.jpg",
-                    Type = "言情女生",
-                    UpDateTime = "2021-05-30",
-                    Title = "都市无敌战神",
-                    Summary = "五年前，被陷害入狱！五年后，他荣耀归来，天下权势，尽握手中！我所失去的，终会千百倍的拿回来！…",
-                    Status = "连载中",
-                    WordCount = "4074653",
-                    LastCharpter = new NovelCharpter {
-                        Title = "第1736章 震惊遗落大陆",
-                        Href = "/book/164873/84252144.html",
-                    }
-                },
-                new NovelInfo {
-                    Href = "/book/164873/",
-                    ImageSource = "https://www.23qb.net/files/article/image/164/164873/164873s.jpg",
-                    Type = "言情女生",
-                    UpDateTime = "2021-05-30",
-                    Title = "都市无敌战神",
-                    Summary = "五年前，被陷害入狱！五年后，他荣耀归来，天下权势，尽握手中！我所失去的，终会千百倍的拿回来！…",
-                    Status = "连载中",
-                    WordCount = "4074653",
-                    LastCharpter = new NovelCharpter {
-                        Title = "第1736章 震惊遗落大陆",
-                        Href = "/book/164873/84252144.html",
-                    }
-                },
-                new NovelInfo {
-                    Href = "/book/164873/",
-                    ImageSource = "https://www.23qb.net/files/article/image/164/164873/164873s.jpg",
-                    Type = "言情女生",
-                    UpDateTime = "2021-05-30",
-                    Title = "都市无敌战神",
-                    Summary = "五年前，被陷害入狱！五年后，他荣耀归来，天下权势，尽握手中！我所失去的，终会千百倍的拿回来！…",
-                    Status = "连载中",
-                    WordCount = "4074653",
-                    LastCharpter = new NovelCharpter {
-                        Title = "第1736章 震惊遗落大陆",
-                        Href = "/book/164873/84252144.html",
-                    }
-                },
-                new NovelInfo {
-                    Href = "/book/164873/",
-                    ImageSource = "https://www.23qb.net/files/article/image/164/164873/164873s.jpg",
-                    Type = "言情女生",
-                    UpDateTime = "2021-05-30",
-                    Title = "都市无敌战神",
-                    Summary = "五年前，被陷害入狱！五年后，他荣耀归来，天下权势，尽握手中！我所失去的，终会千百倍的拿回来！…",
-                    Status = "连载中",
-                    WordCount = "4074653",
-                    LastCharpter = new NovelCharpter {
-                        Title = "第1736章 震惊遗落大陆",
-                        Href = "/book/164873/84252144.html",
-                    }
-                },
-                new NovelInfo {
-                    Href = "/book/164873/",
-                    ImageSource = "https://www.23qb.net/files/article/image/164/164873/164873s.jpg",
-                    Type = "言情女生",
-                    UpDateTime = "2021-05-30",
-                    Title = "都市无敌战神",
-                    Summary = "五年前，被陷害入狱！五年后，他荣耀归来，天下权势，尽握手中！我所失去的，终会千百倍的拿回来！…",
-                    Status = "连载中",
-                    WordCount = "4074653",
-                    LastCharpter = new NovelCharpter {
-                        Title = "第1736章 震惊遗落大陆",
-                        Href = "/book/164873/84252144.html",
-                    }
-                },
-                new NovelInfo {
-                    Href = "/book/164873/",
-                    ImageSource = "https://www.23qb.net/files/article/image/164/164873/164873s.jpg",
-                    Type = "言情女生",
-                    UpDateTime = "2021-05-30",
-                    Title = "都市无敌战神",
-                    Summary = "五年前，被陷害入狱！五年后，他荣耀归来，天下权势，尽握手中！我所失去的，终会千百倍的拿回来！…",
-                    Status = "连载中",
-                    WordCount = "4074653",
-                    LastCharpter = new NovelCharpter {
-                        Title = "第1736章 震惊遗落大陆",
-                        Href = "/book/164873/84252144.html",
-                    }
-                },
-            };
+        public BeautifulViewModel(NovelService service, ContentViewModel contentViewModel, CharpterViewModel charpterViewModel) {
+            novels = new BindableCollection<NovelInfo>();
             novelList = new NovelListViewModel(novels);
             helloViewModel = new HelloViewModel();
             this._service = service;
+            this._contentViewModel = contentViewModel;
+            this._charpterViewModel = charpterViewModel;
         }
 
         protected override async Task OnActivateAsync(CancellationToken cancellationToken) {
@@ -295,5 +89,26 @@ namespace Novel.Modules.Document.ViewModels {
             this.Novels = new BindableCollection<NovelInfo>(ret);
             await  base.OnActivateAsync(cancellationToken);
         }
+
+        /// <summary>
+        /// 跳转到章节列表
+        /// </summary>
+        /// <param name="novel"></param>
+        public void ToCharpter(NovelInfo novel) {
+            this._charpterViewModel.Novel = novel;
+            var shell = IoC.Get<ShellViewModel>();
+            shell.ActiveItem = this._charpterViewModel;
+        }
+
+        /// <summary>
+        /// 跳转到章节内容
+        /// </summary>
+        /// <param name="novel"></param>
+        public void ToContent(NovelInfo novel) {
+            this._contentViewModel.Href = novel.LastCharpter.Href;
+            var shell = IoC.Get<ShellViewModel>();
+            shell.ActiveItem = this._contentViewModel;
+        }
+
     }
 }

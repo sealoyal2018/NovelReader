@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Novel.Service.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,5 @@ namespace Novel {
         public string Icon { get; }
         public bool Show { get; }
         public int Index { get; }
-
     }
 }

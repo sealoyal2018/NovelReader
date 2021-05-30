@@ -1,4 +1,5 @@
 ﻿using Caliburn.Micro;
+using Novel.Modules.Shell.ViewModels;
 using Novel.Service;
 using Novel.Service.Models;
 using System.ComponentModel.Composition;
@@ -9,6 +10,8 @@ namespace Novel.Modules.Document.ViewModels {
     [Export(typeof(IDocument))]
     public class MartialArtsViewModel : Screen, IDocument {
         private readonly NovelService _service;
+        private readonly ContentViewModel _contentViewModel;
+        private readonly CharpterViewModel _charpterViewModel;
         private BindableCollection<NovelInfo> novels;
         
         public string Name {
@@ -47,9 +50,11 @@ namespace Novel.Modules.Document.ViewModels {
 
 
         [ImportingConstructor]
-        public MartialArtsViewModel(NovelService service) {
+        public MartialArtsViewModel(NovelService service, ContentViewModel contentViewModel, CharpterViewModel charpterViewModel) {
             novels = new BindableCollection<NovelInfo>();
             this._service = service;
+            this._contentViewModel = contentViewModel;
+            this._charpterViewModel = charpterViewModel;
         }
 
         /// <summary>
@@ -61,6 +66,27 @@ namespace Novel.Modules.Document.ViewModels {
             var ret = await _service.GetHotNovels(NovelType.Fantasy);
             this.Novels = new BindableCollection<NovelInfo>(ret);
             await base.OnActivateAsync(cancellationToken);
+        }
+
+
+        /// <summary>
+        /// 跳转到章节列表
+        /// </summary>
+        /// <param name="novel"></param>
+        public void ToCharpter(NovelInfo novel) {
+            this._charpterViewModel.Novel = novel;
+            var shell = IoC.Get<ShellViewModel>();
+            shell.ActiveItem = this._charpterViewModel;
+        }
+
+        /// <summary>
+        /// 跳转到章节内容
+        /// </summary>
+        /// <param name="novel"></param>
+        public void ToContent(NovelInfo novel) {
+            this._contentViewModel.Href = novel.LastCharpter.Href;
+            var shell = IoC.Get<ShellViewModel>();
+            shell.ActiveItem = this._contentViewModel;
         }
 
     }

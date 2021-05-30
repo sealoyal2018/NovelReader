@@ -10,7 +10,6 @@
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">
-
     <Grid>
         <ItemsControl ItemsSource="{Binding Novels}">
             <ItemsControl.ItemsPanel>
@@ -38,15 +37,20 @@
                             <Image
                                 Grid.RowSpan="4"
                                 Margin="0,0,4,0"
+                                cal:Message.Attach="[Event MouseLeftButtonDown]=[Action ToCharpter($dataContext)]"
                                 Source="{Binding ImageSource}"
-                                Stretch="Fill" />
+                                Stretch="Fill"
+                                Style="{DynamicResource Image}" />
 
                             <Grid Grid.Column="1" Margin="4,0,0,2">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="auto" />
                                 </Grid.ColumnDefinitions>
-                                <TextBlock Text="{Binding Title}" />
+                                <TextBlock
+                                    cal:Message.Attach="[Event MouseLeftButtonDown]=[Action ToCharpter($dataContext)]"
+                                    Style="{DynamicResource TextBlock}"
+                                    Text="{Binding Title}" />
                                 <TextBlock Grid.Column="1" Text="{Binding UpDateTime}" />
                             </Grid>
                             <StackPanel
@@ -70,6 +74,8 @@
                                 Grid.Row="3"
                                 Grid.Column="1"
                                 Margin="4,4,0,0"
+                                cal:Message.Attach="[Event MouseLeftButtonDown]=[Action ToContent($dataContext)]"
+                                Style="{StaticResource TextBlock}"
                                 Text="{Binding LastCharpter.Title, StringFormat=最新章节:{0}}"
                                 TextWrapping="NoWrap" />
                         </Grid>

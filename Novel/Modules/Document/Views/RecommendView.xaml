@@ -2,6 +2,7 @@
     x:Class="Novel.Modules.Document.Views.RecommendView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:cal="http://caliburnmicro.com"
     xmlns:cvt="clr-namespace:Novel.Converters"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:hc="https://handyorg.github.io/handycontrol"
@@ -87,11 +88,15 @@
                                     <Image
                                         Height="125"
                                         Margin="0,0,4,0"
-                                        Source="{Binding Novels[0].ImageSource}" />
+                                        cal:Message.Attach="[Event MouseLeftButtonDown]=[Action ToCharpterOfLeft($dataContext)]"
+                                        Source="{Binding Novels[0].ImageSource}"
+                                        Style="{StaticResource Image}" />
                                 </Grid>
                                 <TextBlock
                                     Grid.Column="1"
                                     Margin="4,0,0,4"
+                                    cal:Message.Attach="[Event MouseLeftButtonDown]=[Action ToCharpterOfLeft($dataContext)]"
+                                    Style="{StaticResource TextBlock}"
                                     Text="{Binding Novels[0].Title}" />
                                 <TextBlock
                                     Grid.Row="1"
@@ -118,12 +123,16 @@
                                 <Grid Grid.RowSpan="3">
                                     <Image
                                         Margin="0,0,4,0"
+                                        cal:Message.Attach="[Event MouseLeftButtonDown]=[Action ToCharpterOfRight($dataContext)]"
                                         Source="{Binding Novels[1].ImageSource}"
-                                        Stretch="Uniform" />
+                                        Stretch="Uniform"
+                                        Style="{StaticResource Image}" />
                                 </Grid>
                                 <TextBlock
                                     Grid.Column="1"
                                     Margin="4,0,0,2"
+                                    cal:Message.Attach="[Event MouseLeftButtonDown]=[Action ToCharpterOfRight($dataContext)]"
+                                    Style="{StaticResource TextBlock}"
                                     Text="{Binding Novels[1].Title}" />
                                 <TextBlock
                                     Grid.Row="1"
@@ -170,6 +179,8 @@
                                             <TextBlock
                                                 Grid.Column="1"
                                                 Margin="4,0"
+                                                cal:Message.Attach="[Event MouseLeftButtonDown]=[Action ToCharpter($dataContext)]"
+                                                Style="{StaticResource TextBlock}"
                                                 Text="{Binding Title}" />
                                             <TextBlock
                                                 Grid.Column="2"

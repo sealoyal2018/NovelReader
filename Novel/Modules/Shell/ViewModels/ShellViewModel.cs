@@ -11,7 +11,7 @@ using System.Windows;
 using System.Windows.Controls;
 
 namespace Novel.Modules.Shell.ViewModels {
-
+    [Export(typeof(ShellViewModel))]
     [Export(typeof(IShell))]
     public class ShellViewModel: Conductor<IDocument>.Collection.OneActive, IShell {
 
