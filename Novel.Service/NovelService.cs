@@ -190,7 +190,7 @@ namespace Novel.Service {
                     var ddNodes = dlDiv.SelectNodes(".//dd");
                     novel.Title = ddNodes[0].InnerText;
                     novel.Author = ddNodes[1].InnerText;
-                    novel.Summary = ddNodes[2].InnerText;
+                    novel.Summary = ddNodes[2].InnerText.Replace("&nbsp;", ""); ;
                     recomemd.Novels.Add(novel);
                 }
                 var lis = recomDiv.SelectNodes(".//ul/li");
@@ -278,7 +278,7 @@ namespace Novel.Service {
                 novel.Status = spanNodes[1].InnerText;
                 novel.WordCount = spanNodes[2].InnerText;
 
-                novel.Summary = ddNodes[2].InnerText;
+                novel.Summary = ddNodes[2].InnerText.Replace("&nbsp;", "");
                 var charpterNode = ddNodes[3].SelectSingleNode("a");
                 var charpter = new NovelCharpter();
                 charpter.Title = charpterNode.InnerText;

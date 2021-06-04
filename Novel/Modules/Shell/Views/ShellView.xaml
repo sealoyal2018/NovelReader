@@ -8,7 +8,7 @@
     xmlns:hc="https://handyorg.github.io/handycontrol"
     xmlns:local="clr-namespace:Novel"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Title="ShellView"
+    Title="{Binding DisplayName, Mode=OneWay}"
     Width="1083"
     Height="670"
     MinWidth="1083"

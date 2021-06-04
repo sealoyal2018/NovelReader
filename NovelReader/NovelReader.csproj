@@ -3,19 +3,20 @@
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net5.0-windows</TargetFramework>
+	  <RuntimeIdentifier>win-x64</RuntimeIdentifier>
     <UseWPF>true</UseWPF>
     <Authors>sealoyal</Authors>
     <Description>数据来源于铅笔小说网(www.x23qb.net)</Description>
     <Copyright>sealoyal</Copyright>
     <PackageIcon>favicon.ico</PackageIcon>
-  </PropertyGroup>
-	<PropertyGroup>
 		<RuntimeIdentifier>win10-x64</RuntimeIdentifier>
 		<PublishSingleFile>true</PublishSingleFile>
+		<StartupObject>NovelReader.App</StartupObject>
+		<ApplicationIcon>favicon.ico</ApplicationIcon>
 	</PropertyGroup>
 	
   <ItemGroup>
-    <None Remove="favicon.ico" />
+    <None Remove="favicon1.ico" />
     <None Include="C:\Users\RSDTE\Desktop\favicon.ico">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
@@ -27,7 +28,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="favicon.ico" />
+    <Resource Include="favicon1.ico" />
   </ItemGroup>
 
 </Project>

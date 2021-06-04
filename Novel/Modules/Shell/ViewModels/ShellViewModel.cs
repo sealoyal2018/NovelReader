@@ -48,6 +48,7 @@ namespace Novel.Modules.Shell.ViewModels {
             _documents = new BindableCollection<IDocument>(documents.Where(x=> x.Show).OrderBy(x=> x.Index));
             _searchCommand = new CommandBase(OpenSearch);
             ActiveItem = _documents.First();
+            DisplayName = "铅笔小说客户端";
         }
 
         public void MoveWindow() {
