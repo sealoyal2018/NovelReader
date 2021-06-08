@@ -30,4 +30,8 @@
     <Resource Include="Resources\Images\zuixiaohua.png" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Framework\Models\" />
+  </ItemGroup>
+
 </Project>

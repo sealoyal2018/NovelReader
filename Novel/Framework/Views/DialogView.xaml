@@ -1,0 +1,55 @@
+﻿<Window
+    x:Class="Novel.Framework.Views.DialogView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:cal="http://caliburnmicro.com"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:hc="https://handyorg.github.io/handycontrol"
+    xmlns:local="clr-namespace:Novel.Framework.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="{Binding Title, Mode=TwoWay}"
+    Width="{Binding Width, Mode=TwoWay}"
+    Height="{Binding Height, Mode=TwoWay}"
+    ResizeMode="{Binding ResizeMode, Mode=TwoWay}"
+    WindowStartupLocation="CenterOwner"
+    mc:Ignorable="d">
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </Window.Resources>
+
+    <Grid Margin="{Binding Padding, Mode=TwoWay}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+
+        <ContentControl cal:View.Model="{Binding Content}" />
+        <StackPanel
+            Grid.Row="1"
+            Margin="0,15,0,0"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Center"
+            Orientation="Horizontal">
+            <Button
+                Name="ApplyAsync"
+                Width="80"
+                Height="30"
+                Content="应用"
+                Visibility="{Binding ShowApplyButton, Converter={StaticResource BooleanToVisibilityConverter}}" />
+            <Button
+                Name="CancelAsync"
+                Width="80"
+                Height="30"
+                Margin="10,0"
+                Content="取消"
+                Visibility="{Binding ShowCancelButton, Converter={StaticResource BooleanToVisibilityConverter}}" />
+            <Button
+                Name="ConfirmAsync"
+                Width="80"
+                Height="30"
+                Content="确定"
+                Visibility="{Binding ShowConfirmButton, Converter={StaticResource BooleanToVisibilityConverter}}" />
+        </StackPanel>
+
+    </Grid>
+</Window>

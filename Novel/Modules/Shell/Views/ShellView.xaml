@@ -15,6 +15,7 @@
     MinHeight="670"
     AllowsTransparency="True"
     ResizeMode="CanResizeWithGrip"
+    WindowStartupLocation="CenterScreen"
     WindowStyle="None"
     mc:Ignorable="d">
 
@@ -58,7 +59,7 @@
             </Grid.RowDefinitions>
 
             <!--  title bar  -->
-            <Grid cal:Message.Attach="[Event MouseLeftButtonDown]=[Action MoveWindow]">
+            <Grid cal:Message.Attach="[Event MouseLeftButtonDown]=[Action MoveWindow]" Background="WhiteSmoke">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="200" />
                     <ColumnDefinition Width="*" />
@@ -67,18 +68,16 @@
                 <Image Source="pack://application:,,,/Novel;component/Resources/Images/logo.png" />
 
 
-                <Grid
+                <hc:SearchBar
+                    x:Name="Search"
                     Grid.Column="1"
+                    Width="200"
+                    Height="30"
                     HorizontalAlignment="Left"
-                    VerticalAlignment="Center">
-                    <hc:SearchBar
-                        x:Name="Search"
-                        Width="200"
-                        hc:InfoElement.Placeholder="输入小说名称搜索"
-                        Command="{Binding SearchCommand}"
-                        CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Text}"
-                        Style="{StaticResource SearchBarPlus}" />
-                </Grid>
+                    hc:InfoElement.Placeholder="输入小说名称搜索"
+                    Command="{Binding SearchCommand}"
+                    CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Text}"
+                    Style="{StaticResource SearchBarPlus}" />
 
                 <StackPanel
                     Grid.Column="2"

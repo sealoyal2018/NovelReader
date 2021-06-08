@@ -99,5 +99,32 @@ namespace Novel.Modules.Shell.ViewModels {
             ShowProgressBar = false;
         }
 
+        protected override async Task OnActivateAsync(CancellationToken cancellationToken) {
+            await base.OnActivateAsync(cancellationToken);
+            //var loginViewModel = IoC.Get<LoginViewModel>();
+            //await loginViewModel.ShowDialogAsync();
+        }
+
+        protected override Task OnInitializeAsync(CancellationToken cancellationToken) {
+            return base.OnInitializeAsync(cancellationToken);
+        }
+
+        protected override void OnViewReady(object view) {
+            base.OnViewReady(view);
+        }
+
+        public override Task ActivateItemAsync(IDocument item, CancellationToken cancellationToken = default) {
+            return base.ActivateItemAsync(item, cancellationToken);
+        }
+        protected override async void OnViewLoaded(object view) {
+            base.OnViewLoaded(view);
+            var loginViewModel = IoC.Get<LoginViewModel>();
+            await loginViewModel.ShowDialogAsync();
+        }
+
+        protected override void OnViewAttached(object view, object context) {
+            base.OnViewAttached(view, context);
+        }
+
     }
 }

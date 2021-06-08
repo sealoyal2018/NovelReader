@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Novel.Controls", "Novel.Con
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Novel.Service", "Novel.Service\Novel.Service.csproj", "{481AE060-8FD8-47D6-B518-D1F9161699B1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Novel.Update", "Novel.Update\Novel.Update.csproj", "{CE74D2A3-1536-43EE-B755-D01CCB8762BA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Novel.Update", "Novel.Update\Novel.Update.csproj", "{CE74D2A3-1536-43EE-B755-D01CCB8762BA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
