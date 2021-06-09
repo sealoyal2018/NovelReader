@@ -1,10 +1,7 @@
-﻿using Novel.Framework.ViewModels;
+﻿using Novel.Framework;
+using Novel.Framework.ViewModels;
 using Novel.Service;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.Composition;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Novel.Modules.Document.ViewModels {
@@ -48,15 +45,19 @@ namespace Novel.Modules.Document.ViewModels {
             this.Dialog.Content = this;
             this.Dialog.Title = "登录";
             this.Dialog.ShowCancelButton = false;
+            this.Dialog.ShowConfirmButton = false;
+            this.Dialog.Padding = new(0);
             this.Dialog.ResizeMode = System.Windows.ResizeMode.NoResize;
             return Task.CompletedTask;
         }
 
         public override async Task ConfirmAsync() {
             var ret = await this.service.Login(new Service.Models.Login { Password = Password, UserName = UserName });
-            if(ret)
+            if (ret)
                 await base.ConfirmAsync();
-
+            else {
+                await MessageBox.ShowAsync("账号或密码不正确!");
+            }
         }
     }
 }

@@ -59,7 +59,7 @@
             </Grid.RowDefinitions>
 
             <!--  title bar  -->
-            <Grid cal:Message.Attach="[Event MouseLeftButtonDown]=[Action MoveWindow]" Background="WhiteSmoke">
+            <Grid cal:Message.Attach="[Event MouseLeftButtonDown]=[Action MoveWindow]" Background="Transparent">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="200" />
                     <ColumnDefinition Width="*" />

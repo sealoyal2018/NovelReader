@@ -41,7 +41,7 @@ namespace Novel.Modules.Document.ViewModels {
 
         public bool Show {
             get {
-                return true;
+                return false;
             }
         }
 

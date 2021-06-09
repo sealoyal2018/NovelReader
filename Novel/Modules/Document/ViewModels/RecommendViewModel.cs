@@ -53,17 +53,6 @@ namespace Novel.Modules.Document.ViewModels {
             }
         }
 
-        public bool ShowProgressBar {
-            get {
-                return showProgressBar;
-            }
-
-            set {
-                showProgressBar = value;
-                NotifyOfPropertyChange(nameof(ShowProgressBar));
-            }
-        }
-
         [ImportingConstructor]
         public RecommendViewModel(NovelService service, CharpterViewModel charpterViewModel) {
             recommends = new BindableCollection<Recommend>();

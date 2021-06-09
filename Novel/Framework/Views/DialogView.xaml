@@ -10,8 +10,8 @@
     Title="{Binding Title, Mode=TwoWay}"
     Width="{Binding Width, Mode=TwoWay}"
     Height="{Binding Height, Mode=TwoWay}"
-    ResizeMode="{Binding ResizeMode, Mode=TwoWay}"
     Loaded="Window_Loaded"
+    ResizeMode="{Binding ResizeMode, Mode=TwoWay}"
     WindowStartupLocation="CenterOwner"
     mc:Ignorable="d">
     <Window.Resources>
@@ -27,7 +27,6 @@
         <ContentControl cal:View.Model="{Binding Content}" />
         <StackPanel
             Grid.Row="1"
-            Margin="0,15,0,0"
             HorizontalAlignment="Right"
             VerticalAlignment="Center"
             Orientation="Horizontal">
@@ -35,19 +34,21 @@
                 Name="ConfirmAsync"
                 Width="80"
                 Height="30"
+                Margin="0,15,0,0"
                 Content="确定"
                 Visibility="{Binding ShowConfirmButton, Converter={StaticResource BooleanToVisibilityConverter}}" />
             <Button
                 Name="ApplyAsync"
                 Width="80"
                 Height="30"
+                Margin="0,15,0,0"
                 Content="应用"
                 Visibility="{Binding ShowApplyButton, Converter={StaticResource BooleanToVisibilityConverter}}" />
             <Button
                 Name="CancelAsync"
                 Width="80"
                 Height="30"
-                Margin="10,0"
+                Margin="10,15,10,0"
                 Content="取消"
                 Visibility="{Binding ShowCancelButton, Converter={StaticResource BooleanToVisibilityConverter}}" />
         </StackPanel>

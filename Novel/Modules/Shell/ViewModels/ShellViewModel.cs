@@ -119,11 +119,10 @@ namespace Novel.Modules.Shell.ViewModels {
         protected override async void OnViewLoaded(object view) {
             base.OnViewLoaded(view);
             var loginViewModel = IoC.Get<LoginViewModel>();
-            await loginViewModel.ShowDialogAsync();
-        }
-
-        protected override void OnViewAttached(object view, object context) {
-            base.OnViewAttached(view, context);
+            var ret = await loginViewModel.ShowDialogAsync();
+            if (!ret) {
+                await TryCloseAsync();
+            }
         }
 
     }
