@@ -7,7 +7,7 @@ namespace Novel.Framework.ViewModels {
         private double height=430d;
         private double width=550d;
         private string title="对话框";
-        private Thickness padding = new Thickness(30);
+        private Thickness padding = new(30);
         private bool showCancelButton = true;
         private bool showConfirmButton = true;
         private bool showApplyButton = false;

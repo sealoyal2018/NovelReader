@@ -1,4 +1,5 @@
-﻿using Novel.Modules.Document.ViewModels;
+﻿using Novel.Framework.ViewModels;
+using Novel.Modules.Document.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,13 +24,13 @@ namespace Novel.Framework.Views {
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e) {
-            if(this.DataContext is LoginViewModel s) {
+            if(this.DataContext is DialogViewModel s) {
                 if (Owner is null) {
                     Left = (SystemParameters.PrimaryScreenWidth - this.Width) / 2;
                     Top = (SystemParameters.PrimaryScreenHeight - this.Height) / 2;
                 } else {
-                    Top = Owner.Top + Math.Abs(Owner.ActualHeight - s.Dialog.Height) / 2;
-                    Left = Owner.Left + Math.Abs(Owner.ActualWidth - s.Dialog.Width) / 2;
+                    Top = Owner.Top + Math.Abs(Owner.ActualHeight - s.Height) / 2;
+                    Left = Owner.Left + Math.Abs(Owner.ActualWidth - s.Width) / 2;
                 }
             }
         }

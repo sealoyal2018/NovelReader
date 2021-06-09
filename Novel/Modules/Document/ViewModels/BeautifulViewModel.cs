@@ -87,7 +87,7 @@ namespace Novel.Modules.Document.ViewModels {
         protected override async Task OnActivateAsync(CancellationToken cancellationToken) {
             var ret = await this._service.GetHotNovels(NovelType.Romance);
             this.Novels = new BindableCollection<NovelInfo>(ret);
-            await  base.OnActivateAsync(cancellationToken);
+            await base.OnActivateAsync(cancellationToken);
         }
 
         /// <summary>

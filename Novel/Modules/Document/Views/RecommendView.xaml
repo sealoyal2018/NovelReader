@@ -15,7 +15,7 @@
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
     </UserControl.Resources>
-    <Grid>
+    <hc:ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
         <ItemsControl ItemsSource="{Binding Recommends}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
@@ -194,14 +194,6 @@
                     </GroupBox>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
-
         </ItemsControl>
-        <hc:CircleProgressBar
-            Width="100"
-            Height="100"
-            Margin="16,0,0,0"
-            IsIndeterminate="True"
-            Style="{StaticResource ProgressBarDangerCircle}"
-            Visibility="{Binding ShowProgressBar, Converter={StaticResource BooleanToVisibilityConverter}}" />
-    </Grid>
+    </hc:ScrollViewer>
 </UserControl>

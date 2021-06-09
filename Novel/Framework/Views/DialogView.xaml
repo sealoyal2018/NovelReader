@@ -11,6 +11,7 @@
     Width="{Binding Width, Mode=TwoWay}"
     Height="{Binding Height, Mode=TwoWay}"
     ResizeMode="{Binding ResizeMode, Mode=TwoWay}"
+    Loaded="Window_Loaded"
     WindowStartupLocation="CenterOwner"
     mc:Ignorable="d">
     <Window.Resources>
@@ -31,6 +32,12 @@
             VerticalAlignment="Center"
             Orientation="Horizontal">
             <Button
+                Name="ConfirmAsync"
+                Width="80"
+                Height="30"
+                Content="确定"
+                Visibility="{Binding ShowConfirmButton, Converter={StaticResource BooleanToVisibilityConverter}}" />
+            <Button
                 Name="ApplyAsync"
                 Width="80"
                 Height="30"
@@ -43,12 +50,6 @@
                 Margin="10,0"
                 Content="取消"
                 Visibility="{Binding ShowCancelButton, Converter={StaticResource BooleanToVisibilityConverter}}" />
-            <Button
-                Name="ConfirmAsync"
-                Width="80"
-                Height="30"
-                Content="确定"
-                Visibility="{Binding ShowConfirmButton, Converter={StaticResource BooleanToVisibilityConverter}}" />
         </StackPanel>
 
     </Grid>

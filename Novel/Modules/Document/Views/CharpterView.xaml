@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:cal="http://caliburnmicro.com"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:hc="https://handyorg.github.io/handycontrol"
     xmlns:local="clr-namespace:Novel.Modules.Document.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:service.model="clr-namespace:Novel.Service.Models;assembly=Novel.Service"
@@ -12,8 +13,13 @@
     mc:Ignorable="d">
     <UserControl.Resources />
 
-    <StackPanel Margin="100,0">
-        <Grid Height="280" Margin="0,0,0,4">
+    <Grid Margin="150,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="280" />
+            <RowDefinition Height="2" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid Margin="0,0,0,4">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto" />
                 <ColumnDefinition Width="*" />
@@ -51,26 +57,31 @@
                 Text="{Binding Novel.Summary}" />
         </Grid>
         <Border
-            Height="2"
+            Grid.Row="1"
             BorderBrush="Red"
             BorderThickness="1" />
+        <hc:ScrollViewer
+            Grid.Row="2"
+            HorizontalScrollBarVisibility="Disabled"
+            VerticalScrollBarVisibility="Auto">
+            <ItemsControl ItemsSource="{Binding Charpters}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid Columns="3" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate DataType="{x:Type service.model:NovelCharpter}">
+                        <Grid Margin="0,8">
+                            <TextBlock
+                                cal:Message.Attach="[Event MouseLeftButtonDown]=[Action ToContent($dataContext)]"
+                                Style="{StaticResource TextBlock}"
+                                Text="{Binding Title}" />
+                        </Grid>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </hc:ScrollViewer>
 
-        <ItemsControl ItemsSource="{Binding Charpters}">
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <UniformGrid Columns="3" />
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-            <ItemsControl.ItemTemplate>
-                <DataTemplate DataType="{x:Type service.model:NovelCharpter}">
-                    <Grid Margin="0,8">
-                        <TextBlock
-                            cal:Message.Attach="[Event MouseLeftButtonDown]=[Action ToContent($dataContext)]"
-                            Style="{StaticResource TextBlock}"
-                            Text="{Binding Title}" />
-                    </Grid>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
-    </StackPanel>
+    </Grid>
 </UserControl>

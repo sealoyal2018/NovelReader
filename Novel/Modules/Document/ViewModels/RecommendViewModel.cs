@@ -17,7 +17,6 @@ namespace Novel.Modules.Document.ViewModels {
         private readonly NovelService _service;
         private readonly CharpterViewModel _charpterViewModel;
         private BindableCollection<Recommend> recommends;
-        private bool showProgressBar;
 
         public string Name {
             get {
@@ -73,11 +72,9 @@ namespace Novel.Modules.Document.ViewModels {
         }
 
         protected override async Task OnActivateAsync(CancellationToken cancellationToken) {
-            ShowProgressBar = true;
             var ret = await this._service.GetRecommendNovel();
             Recommends = new BindableCollection<Recommend>(ret);
             await base.OnActivateAsync(cancellationToken);
-            ShowProgressBar = false;
         }
       
         /// <summary>

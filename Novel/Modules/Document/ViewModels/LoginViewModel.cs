@@ -47,6 +47,8 @@ namespace Novel.Modules.Document.ViewModels {
             this.Dialog.Width = 410d;
             this.Dialog.Content = this;
             this.Dialog.Title = "登录";
+            this.Dialog.ShowCancelButton = false;
+            this.Dialog.ResizeMode = System.Windows.ResizeMode.NoResize;
             return Task.CompletedTask;
         }
 

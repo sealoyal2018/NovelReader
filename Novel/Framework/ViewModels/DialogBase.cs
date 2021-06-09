@@ -42,10 +42,7 @@ namespace Novel.Framework.ViewModels {
         public async Task<bool> ShowDialogAsync() {
             await InitDialogAsync();
             var ret = await _windowManager.ShowDialogAsync(Dialog);
-            if (ret is bool b && b) {
-                return b;
-            }
-            return false;
+            return ret is bool b && b ? b : false;
         }
     }
 }
