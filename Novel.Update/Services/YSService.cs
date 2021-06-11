@@ -1,17 +1,25 @@
 using HtmlAgilityPack;
+using Novel.Update.Models;
 using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace Novel.Update.Service {
+namespace Novel.Update.Services {
     public class YSService {
         private readonly RestClient _restClient;
         private Dictionary<string, string> cookies = new Dictionary<string, string>();
         private List<UpdateFileInfo> fileInfos = new List<UpdateFileInfo>();
+
+        public List<UpdateFileInfo> FileInfos {
+            get {
+                return fileInfos;
+            }
+        }
 
         public YSService() {
             _restClient = new RestClient();
@@ -55,7 +63,7 @@ namespace Novel.Update.Service {
                     var path = aElem.GetAttributeValue("href", string.Empty);
                     var name = aElem.InnerText;
                     var size = iElem.InnerText;
-                    fileInfos.Add(new UpdateFileInfo { Path = path, Size = size, Name = name });
+                    FileInfos.Add(new UpdateFileInfo { Path = path, Size = size, Name = name });
                 }
                 return true;
             }
@@ -68,7 +76,7 @@ namespace Novel.Update.Service {
         /// <returns></returns>
         public async Task<VersionInfo> GetLatestVersionInfoAsync() {
             var fileName = "latest.json";
-            var fileInfo = fileInfos.Where(x => x.Name == fileName).FirstOrDefault();
+            var fileInfo = FileInfos.Where(x => x.Name == fileName).FirstOrDefault();
             if (fileInfo is null)
                 return null;
             var req = new RestRequest(fileInfo.Path, Method.GET);
@@ -86,14 +94,32 @@ namespace Novel.Update.Service {
         /// </summary>
         /// <param name="action"></param>
         /// <returns></returns>
-        public async Task DownloadUpdateFileAsync(Action<double> action) {
+        public async Task DownloadUpdateFileAsync(string saveFilePath, Action<double> action) {
             var fileName = "latest.json";
-            var updateFile = fileInfos.Where(x => x.Name != fileName).ToList();
+            var updateFile = FileInfos.Where(x => x.Name != fileName).ToList();
             var count = updateFile.Count;
             var perMount = 1d / count;
-            var saveFilePath = "./";
+            if (Directory.Exists(saveFilePath)) {
+                Directory.Delete(saveFilePath, true);
+            }
+            Directory.CreateDirectory(saveFilePath);
+            if (!saveFilePath.EndsWith("\\")) {
+                saveFilePath += "\\";
+            }
+
             foreach (var file in updateFile) {
-                var req = new RestRequest("http://ys-g.ys168.com/618077323/216922314/SKhVstp645H36744MN58f/%E5%8F%96%E8%89%B2.zip", Method.GET);
+                var arr = file.Name.Split('.');
+                var name = arr[0];
+                var nameBuilder = new StringBuilder();
+                foreach (var ch in name) {
+                    if ((int)ch > 127) {
+                        nameBuilder.Append(Uri.EscapeUriString($"{ch}"));
+                    } else {
+                        nameBuilder.Append(ch);
+                    }
+                }
+                var path = $"{file.Path.Substring(0, file.Path.LastIndexOf('/') + 1)}{nameBuilder}.{arr[1]}";
+                var req = new RestRequest(path, Method.GET);
                 var res = await _restClient.ExecuteAsync(req);
                 if (res.IsSuccessful) {
                     var allSize = res.ContentLength;
@@ -106,10 +132,11 @@ namespace Novel.Update.Service {
                             }
                             fs.Write(res.RawBytes, offset, length);
                             offset += length;
-                            if(offset >= allSize) {
+                            if (offset >= allSize) {
                                 break;
                             }
-                            action(1d*offset/allSize*perMount);
+                            action(1d * offset / allSize * perMount * 100);
+                            await Task.Delay(10);
                         }
                     }
                 }

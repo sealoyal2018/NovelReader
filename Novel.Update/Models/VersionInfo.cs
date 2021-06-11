@@ -1,55 +1,15 @@
-﻿using Caliburn.Micro;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Novel.Update.Models {
-    public class VersionInfo: PropertyChangedBase {
-        private string version;
-        private double size;
-
-        /// <summary>
-        /// 版本次号
-        /// </summary>
-        public string Version {
-            get {
-                return version;
-            }
-
-            set {
-                version = value;
-                NotifyOfPropertyChange(nameof(Version));
-            }
-        }
-
-        /// <summary>
-        /// 下载文件的大小
-        /// </summary>
-        public double Size {
-            get {
-                return size;
-            }
-
-            set {
-                size = value;
-                NotifyOfPropertyChange(nameof(Size));
-            }
-        }
-
-        public string Content {
-            get {
-                return content;
-            }
-
-            set {
-                content = value;
-                NotifyOfPropertyChange(nameof(Content));
-            }
-        }
-
-        private string content;
-
+    public class VersionInfo {
+        public string LatestVersion { get; set; }
+        public List<string> Summary { get; set; } = new List<string>();
+        public DateTime UpdateTime { get; set; }
+        public Guid Token { get; set; }
+        public List<VersionInfo> OldVersionInfo { get; set; } = new List<VersionInfo>();
     }
 }

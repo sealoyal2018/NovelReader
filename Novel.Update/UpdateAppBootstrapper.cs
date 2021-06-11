@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Windows;
+using System.Windows.Threading;
 
 namespace Novel.Update {
     public class UpdateAppBootstrapper:BootstrapperBase {
@@ -52,6 +53,10 @@ namespace Novel.Update {
 
         protected override void OnStartup(object sender, StartupEventArgs e) {
             DisplayRootViewFor<IShell>();
+        }
+
+        protected override void OnUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e) {
+            base.OnUnhandledException(sender, e);
         }
     }
 }

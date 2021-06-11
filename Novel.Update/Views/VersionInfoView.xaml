@@ -24,32 +24,25 @@
             VerticalAlignment="Center"
             FontSize="24"
             Text="新版本升级" />
-        <TextBlock
+        <StackPanel
             Grid.Row="1"
-            HorizontalAlignment="Center"
+            HorizontalAlignment="Left"
             VerticalAlignment="Center"
-            Text="{Binding Info.Version, StringFormat=最新版本: v{0}}" />
-
-        <!--<TextBlock
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"  Grid.Row="1"
-            Text="{Binding VersionInfo.Version, StringFormat=版本号:{0}}" />-->
-        <TextBox
+            Orientation="Horizontal">
+            <TextBlock
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Text="{Binding Info.LatestVersion, StringFormat=最新版本: v{0}}" />
+            <TextBlock
+                Margin="10,0,0,0"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Text="{Binding Info.UpdateTime, StringFormat={}更新时间: {0:yyyy-MM-dd HH:mm:ss}}" />
+        </StackPanel>
+        <ListBox
             Grid.Row="2"
             Margin="0,8"
-            HorizontalContentAlignment="Left"
-            VerticalContentAlignment="Top"
-            AcceptsReturn="True"
-            Background="Transparent"
-            BorderBrush="Transparent"
-            BorderThickness="0"
-            HorizontalScrollBarVisibility="Disabled"
-            IsEnabled="True"
-            IsReadOnly="True"
-            Text="{Binding Info.Content}"
-            TextBlock.LineHeight="25"
-            TextWrapping="Wrap"
-            VerticalScrollBarVisibility="Auto" />
+            ItemsSource="{Binding Info.Summary, Mode=OneWay}" />
         <Button
             x:Name="Updata"
             Grid.Row="3"
