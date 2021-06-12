@@ -136,7 +136,7 @@ namespace Novel.Update.Services {
                                 break;
                             }
                             action(1d * offset / allSize * perMount * 100);
-                            await Task.Delay(10);
+                            await Task.Delay(5);
                         }
                     }
                     action(100d);
