@@ -14,6 +14,11 @@
 		<StartupObject>NovelReader.App</StartupObject>
 		<ApplicationIcon>favicon.ico</ApplicationIcon>
 	</PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OutputPath></OutputPath>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
 	
   <ItemGroup>
     <None Remove="favicon1.ico" />

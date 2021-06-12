@@ -1,6 +1,7 @@
 ﻿using Caliburn.Micro;
 using Novel.Commands;
 using Novel.Modules.Document.ViewModels;
+using Novel.Modules.Update.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
@@ -19,6 +20,7 @@ namespace Novel.Modules.Shell.ViewModels {
         private readonly BindableCollection<IDocument> _documents;
         private readonly CommandBase _searchCommand;
         private bool showProgressBar;
+        private bool isShowUpdateInfo;
 
         public BindableCollection<IDocument> Documents {
             get {
@@ -40,6 +42,19 @@ namespace Novel.Modules.Shell.ViewModels {
             set {
                 showProgressBar = value;
                 NotifyOfPropertyChange(nameof(ShowProgressBar));
+            }
+        }
+
+        /// <summary>
+        /// 显示更新信息
+        /// </summary>
+        public bool IsShowUpdateInfo {
+            get {
+                return isShowUpdateInfo;
+            }
+
+            set {
+                isShowUpdateInfo = value;
             }
         }
 
@@ -118,6 +133,10 @@ namespace Novel.Modules.Shell.ViewModels {
         }
         protected override async void OnViewLoaded(object view) {
             base.OnViewLoaded(view);
+            if (IsShowUpdateInfo) {
+                var updateView = IoC.Get<UpdateInfoViewModel>();
+                await updateView.ShowDialogAsync();
+            }
             var loginViewModel = IoC.Get<LoginViewModel>();
             var ret = await loginViewModel.ShowDialogAsync();
             if (!ret) {

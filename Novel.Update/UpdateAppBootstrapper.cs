@@ -48,7 +48,8 @@ namespace Novel.Update {
         }
 
         protected override IEnumerable<Assembly> SelectAssemblies() {
-            return new DirectoryInfo(Directory.GetCurrentDirectory()).GetFiles("*.dll").Select(x => Assembly.LoadFrom(x.FullName));
+            return new[] { Assembly.GetExecutingAssembly() };
+            //return new DirectoryInfo(Directory.GetCurrentDirectory()).GetFiles("*.dll").Select(x => Assembly.LoadFrom(x.FullName));
         }
 
         protected override void OnStartup(object sender, StartupEventArgs e) {

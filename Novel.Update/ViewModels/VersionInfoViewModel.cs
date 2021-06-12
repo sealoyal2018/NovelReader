@@ -11,7 +11,7 @@ using System.Windows;
 
 namespace Novel.Update.ViewModels {
     [Export]
-    public class VersionInfoViewModel: Screen {
+    public class VersionInfoViewModel : Screen {
         private VersionInfo info;
 
         public VersionInfo Info {
@@ -25,7 +25,7 @@ namespace Novel.Update.ViewModels {
             }
         }
 
-        public  async Task Updata() {
+        public async Task Updata() {
             var shell = IoC.Get<ShellViewModel>();
             var vm = IoC.Get<DownLoadViewModel>();
             shell.Content = vm;

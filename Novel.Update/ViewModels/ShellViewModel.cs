@@ -20,7 +20,7 @@ namespace Novel.Update.ViewModels {
 
 
         public ShellViewModel() {
-            var vm =  IoC.Get<VersionInfoViewModel>();
+            var vm =  IoC.Get<DownLoadViewModel>();
             Content = vm;
             vm.ActivateAsync();
             DisplayName = "更新";

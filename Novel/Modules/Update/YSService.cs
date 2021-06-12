@@ -1,5 +1,5 @@
 using HtmlAgilityPack;
-using Novel.Update.Models;
+using Novel.Modules.Update.Models;
 using RestSharp;
 using System;
 using System.Collections.Generic;
@@ -9,7 +9,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace Novel.Update.Services {
+namespace Novel.Modules.Update {
     public class YSService {
         private readonly RestClient _restClient;
         private Dictionary<string, string> cookies = new Dictionary<string, string>();
@@ -112,7 +112,7 @@ namespace Novel.Update.Services {
                 var name = arr[0];
                 var nameBuilder = new StringBuilder();
                 foreach (var ch in name) {
-                    if ((int)ch > 127) {
+                    if (ch > 127) {
                         nameBuilder.Append(Uri.EscapeUriString($"{ch}"));
                     } else {
                         nameBuilder.Append(ch);

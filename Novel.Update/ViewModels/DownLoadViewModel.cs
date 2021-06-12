@@ -1,5 +1,6 @@
 ﻿using Caliburn.Micro;
 using ICSharpCode.SharpZipLib.Zip;
+using System;
 using System.ComponentModel.Composition;
 using System.Diagnostics;
 using System.IO;
@@ -44,7 +45,7 @@ namespace Novel.Update.ViewModels {
 
         public void GetProgressValue(double value) {
             ProgressValue = value;
-            Debug.WriteLine(value);
+            //Debug.WriteLine(value);
             if (value >= 100) {
                 // 拷贝
                 var files = App.service.FileInfos.Where(x => x.Name != "latest.json");
@@ -53,11 +54,28 @@ namespace Novel.Update.ViewModels {
                     try {
                         fz.ExtractZip($"{this._savePath}\\{item.Name}", target, null);
                         Directory.Delete(_savePath, true);
-                    } catch (System.Exception e) {
+                    } catch (Exception ex) {
 
                     }
                 }
-                ShowRestartButton = true;
+                //ShowRestartButton = true;
+                // 启动更新软件
+                var directionInfo = new DirectoryInfo(Directory.GetCurrentDirectory());
+                var fileInfos = directionInfo.GetFiles("NovelReader.exe");
+                if (fileInfos != null && fileInfos.Length > 0) {
+                    var process = new Process {
+                        StartInfo = new ProcessStartInfo {
+                            WorkingDirectory = Directory.GetCurrentDirectory(),
+                            UseShellExecute = true,
+                            FileName = fileInfos[0].FullName,
+                            CreateNoWindow = true,
+                            Arguments = "update_start",
+                        }
+                    };
+                    process.Start();
+                }
+                System.Windows.Application.Current.Shutdown();
+                return;
             }
         }
 
