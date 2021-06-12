@@ -15,7 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Novel.Update", "Novel.Updat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Novel.Update.Service", "Novel.Update.Service\Novel.Update.Service.csproj", "{67ABD0C7-EF0A-4500-8EC4-87CC7AFE4BA5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Novel.TestProj", "Novel.TestProj\Novel.TestProj.csproj", "{6E7FD573-9251-4745-A1E5-68545ED52E26}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Novel.TestProj", "Novel.TestProj\Novel.TestProj.csproj", "{6E7FD573-9251-4745-A1E5-68545ED52E26}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NovelReaderInstaller", "NovelReaderInstaller\NovelReaderInstaller.csproj", "{13C9AE25-291C-4407-AFDF-BF9AEC170785}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{6E7FD573-9251-4745-A1E5-68545ED52E26}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6E7FD573-9251-4745-A1E5-68545ED52E26}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6E7FD573-9251-4745-A1E5-68545ED52E26}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13C9AE25-291C-4407-AFDF-BF9AEC170785}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13C9AE25-291C-4407-AFDF-BF9AEC170785}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13C9AE25-291C-4407-AFDF-BF9AEC170785}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13C9AE25-291C-4407-AFDF-BF9AEC170785}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
