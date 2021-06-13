@@ -13,7 +13,6 @@
   <ItemGroup>
     <None Remove="Resources\favicon.png" />
     <None Remove="Resources\Files\publish.zip" />
-    <EmbeddedResource Include="Resources\Files\publish.zip" />
     <None Include="C:\Users\RSDTE\Desktop\favicon.png">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
@@ -30,6 +29,10 @@
 
   <ItemGroup>
     <Resource Include="Resources\Images\favicon.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Resources\Files\" />
   </ItemGroup>
 
 </Project>

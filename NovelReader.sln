@@ -19,7 +19,23 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Novel.TestProj", "Novel.Tes
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NovelReaderInstaller", "NovelReaderInstaller\NovelReaderInstaller.csproj", "{13C9AE25-291C-4407-AFDF-BF9AEC170785}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uninstall", "Uninstall\Uninstall.csproj", "{216BBCEC-B870-416B-A165-10F06FB84762}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Uninstall", "Uninstall\Uninstall.csproj", "{216BBCEC-B870-416B-A165-10F06FB84762}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Resources", "Resources", "{0A9DD894-AF4C-4A3F-B980-1CF56021DDCB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{F9B0A281-9D4A-4438-A691-F1C51AC0E963}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Screenshots", "Screenshots", "{BEA2AD53-0569-4E6E-A6F0-8E8ADF3865C6}"
+	ProjectSection(SolutionItems) = preProject
+		login.jpg = login.jpg
+		Snipaste_2021-06-13_19-35-05.jpg = Snipaste_2021-06-13_19-35-05.jpg
+		Snipaste_2021-06-13_19-35-29.jpg = Snipaste_2021-06-13_19-35-29.jpg
+		Snipaste_2021-06-13_19-36-22.jpg = Snipaste_2021-06-13_19-36-22.jpg
+		Snipaste_2021-06-13_19-36-33.jpg = Snipaste_2021-06-13_19-36-33.jpg
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -66,6 +82,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F9B0A281-9D4A-4438-A691-F1C51AC0E963} = {0A9DD894-AF4C-4A3F-B980-1CF56021DDCB}
+		{BEA2AD53-0569-4E6E-A6F0-8E8ADF3865C6} = {0A9DD894-AF4C-4A3F-B980-1CF56021DDCB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6308F9C0-69E4-48E3-AD33-80B5CC87FEFF}
