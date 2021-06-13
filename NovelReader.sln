@@ -17,7 +17,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Novel.Update.Service", "Nov
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Novel.TestProj", "Novel.TestProj\Novel.TestProj.csproj", "{6E7FD573-9251-4745-A1E5-68545ED52E26}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NovelReaderInstaller", "NovelReaderInstaller\NovelReaderInstaller.csproj", "{13C9AE25-291C-4407-AFDF-BF9AEC170785}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NovelReaderInstaller", "NovelReaderInstaller\NovelReaderInstaller.csproj", "{13C9AE25-291C-4407-AFDF-BF9AEC170785}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uninstall", "Uninstall\Uninstall.csproj", "{216BBCEC-B870-416B-A165-10F06FB84762}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +59,10 @@ Global
 		{13C9AE25-291C-4407-AFDF-BF9AEC170785}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{13C9AE25-291C-4407-AFDF-BF9AEC170785}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{13C9AE25-291C-4407-AFDF-BF9AEC170785}.Release|Any CPU.Build.0 = Release|Any CPU
+		{216BBCEC-B870-416B-A165-10F06FB84762}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{216BBCEC-B870-416B-A165-10F06FB84762}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{216BBCEC-B870-416B-A165-10F06FB84762}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{216BBCEC-B870-416B-A165-10F06FB84762}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
