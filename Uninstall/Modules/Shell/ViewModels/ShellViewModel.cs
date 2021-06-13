@@ -9,7 +9,8 @@ using Uninstall.Modules.Pages.ViewModels;
 
 namespace Uninstall.Modules.Shell.ViewModels {
     [Export(typeof(IShell))]
-    public class ShellViewModel: Conductor<IPage>, IShell {
+    [Export(typeof(ShellViewModel))]
+    public class ShellViewModel : Conductor<IPage>, IShell {
         [ImportingConstructor]
         public ShellViewModel(ComfirmViewModel comfirmViewModel) {
             ActiveItem = comfirmViewModel;

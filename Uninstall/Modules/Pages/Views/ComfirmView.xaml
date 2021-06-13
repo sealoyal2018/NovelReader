@@ -29,7 +29,8 @@
                 Width="80"
                 Height="30"
                 Margin="0,0,8,0"
-                Content="卸载" />
+                Content="卸载"
+                Style="{StaticResource ButtonPrimary}" />
             <Button
                 x:Name="CancelAsync"
                 Width="80"

@@ -31,7 +31,7 @@ namespace NovelReaderInstaller.Modules.Pages.ViewModels {
         }
 
         public Task StartInstallAsync() {
-            if (!InstallPath.EndsWith($"/{_targeDirectionName}")) {
+            if (!InstallPath.EndsWith($"\\{_targeDirectionName}")) {
                 InstallPath = Path.Combine(InstallPath, _targeDirectionName);
             }
             var installViewModel = IoC.Get<InstallViewModel>();

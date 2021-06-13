@@ -167,7 +167,7 @@ namespace NovelReaderInstaller.Modules.Pages.ViewModels {
             software.SetValue("Publisher", "sealoyal");
             software.SetValue("InstallLocation", _pathViewModel.InstallPath);
             software.SetValue("InstallSource", _pathViewModel.InstallPath);
-            software.SetValue("UninstallString", Path.Combine(_pathViewModel.InstallPath, "uninstall"));
+            software.SetValue("UninstallString", Path.Combine(_pathViewModel.InstallPath, "Uninstall.exe"));
             software.Close();
             key.Close();
             return Task.CompletedTask;
