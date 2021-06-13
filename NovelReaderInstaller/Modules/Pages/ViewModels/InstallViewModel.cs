@@ -1,5 +1,7 @@
 ﻿using Caliburn.Micro;
 using ICSharpCode.SharpZipLib.Zip;
+using Microsoft.Win32;
+using NovelReaderInstaller.Modules.Shell.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
@@ -56,7 +58,14 @@ namespace NovelReaderInstaller.Modules.Pages.ViewModels {
             await CreateDesktopShortcutAsync();
             Value += 2;
             await CreateMenuShortcutAsync();
+            Value += 1;
+            await AddRegeditAsync();
             Value = 100;
+            var completeViewModel = IoC.Get<CompleteViewModel>();
+            var shellViewModel = IoC.Get<ShellViewModel>();
+            shellViewModel.Page = completeViewModel;
+            await this.DeactivateAsync(false);
+            await completeViewModel.ActivateAsync();
         }
 
 
@@ -135,10 +144,32 @@ namespace NovelReaderInstaller.Modules.Pages.ViewModels {
             if (!Directory.Exists(menuPath)) {
                 Directory.CreateDirectory(menuPath);
             }
-            var shortcut = shell.CreateShortcut(Path.Combine(startMenuPath, $"{_linkName}.lnk"));
+            var shortcut = shell.CreateShortcut(Path.Combine(menuPath, $"{_linkName}.lnk"));
             shortcut.TargetPath = Path.Combine(_pathViewModel.InstallPath, _programExeName);
             shortcut.WorkingDirectory = AppDomain.CurrentDomain.SetupInformation.ApplicationBase;
             shortcut.Save();
+            return Task.CompletedTask;
+        }
+
+        /// <summary>
+        /// 注册应用信息
+        /// </summary>
+        /// <returns></returns>
+        private Task AddRegeditAsync() {
+            var key = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry32);
+            if (Environment.Is64BitOperatingSystem) {
+                key = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64);
+            }
+            var software = key.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall", true).CreateSubKey(_linkName);
+            software.SetValue("DisplayIcon", "");
+            software.SetValue("DisplayName", _linkName);
+            software.SetValue("DisiplayVersion", "0.2.0.210612");
+            software.SetValue("Publisher", "sealoyal");
+            software.SetValue("InstallLocation", _pathViewModel.InstallPath);
+            software.SetValue("InstallSource", _pathViewModel.InstallPath);
+            software.SetValue("UninstallString", Path.Combine(_pathViewModel.InstallPath, "uninstall"));
+            software.Close();
+            key.Close();
             return Task.CompletedTask;
         }
 

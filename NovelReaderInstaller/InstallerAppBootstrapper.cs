@@ -55,22 +55,22 @@ namespace NovelReaderInstaller {
         }
 
         protected override void OnStartup(object sender, StartupEventArgs e) {
-            //var identity = WindowsIdentity.GetCurrent();
-            //var pincipal = new WindowsPrincipal(identity);
-            //if (pincipal.IsInRole(WindowsBuiltInRole.Administrator)) {
-            DisplayRootViewFor<IShell>();
-            //    return;
-            //}
-            //var file = Assembly.GetExecutingAssembly().Location;
-            //var fileName = file.Substring(0, file.LastIndexOf('.')) + ".exe";
-            //var startInfo = new ProcessStartInfo {
-            //    UseShellExecute = true,
-            //    WorkingDirectory = Environment.CurrentDirectory,
-            //    FileName = fileName,
-            //    Verb = "runas",
-            //};
-            //Process.Start(startInfo);
-            //Application.Current.Shutdown();
+            var identity = WindowsIdentity.GetCurrent();
+            var pincipal = new WindowsPrincipal(identity);
+            if (pincipal.IsInRole(WindowsBuiltInRole.Administrator)) {
+                DisplayRootViewFor<IShell>();
+                return;
+            }
+            var file = Assembly.GetExecutingAssembly().Location;
+            var fileName = file.Substring(0, file.LastIndexOf('.')) + ".exe";
+            var startInfo = new ProcessStartInfo {
+                UseShellExecute = true,
+                WorkingDirectory = Environment.CurrentDirectory,
+                FileName = fileName,
+                Verb = "runas",
+            };
+            Process.Start(startInfo);
+            Application.Current.Shutdown();
         }
 
         protected override void OnUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e) {

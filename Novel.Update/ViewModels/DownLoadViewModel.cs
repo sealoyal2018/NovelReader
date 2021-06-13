@@ -59,7 +59,7 @@ namespace Novel.Update.ViewModels {
                     }
                 }
                 //ShowRestartButton = true;
-                // 启动更新软件
+                // 启动软件
                 var directionInfo = new DirectoryInfo(Directory.GetCurrentDirectory());
                 var fileInfos = directionInfo.GetFiles("NovelReader.exe");
                 if (fileInfos != null && fileInfos.Length > 0) {

@@ -26,6 +26,7 @@ namespace NovelReaderInstaller.Modules.Shell.ViewModels {
 
         public ShellViewModel() {
             Page = IoC.Get<PathViewModel>();
+            DisplayName = "铅笔小说阅读器 - 安装";
         }
 
     }

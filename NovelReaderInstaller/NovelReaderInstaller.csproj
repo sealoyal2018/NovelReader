@@ -4,11 +4,19 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net5.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
+    <Description>铅笔小说阅读器 - 安装器</Description>
+    <PackageIcon>favicon.png</PackageIcon>
+    <PackageIconUrl />
+    <ApplicationIcon>favicon.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
     <None Remove="Resources\favicon.png" />
     <None Remove="Resources\Files\publish.zip" />
+    <None Include="C:\Users\RSDTE\Desktop\favicon.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
   <ItemGroup>
