@@ -86,8 +86,9 @@ namespace Novel.Service {
         /// <returns>返回小说列表</returns>
         public async Task<List<NovelInfo>> Search(string keyword = "重生", int page = 0) {
             var ret = new List<NovelInfo>();
-            var req = new RestRequest("/search2.php", Method.POST);
-            req.AddHeader("cookie", "PHPSESSID=a2hf580qsmbfhq81j4hliiqv7q; jieqiUserInfo=jieqiUserId%3D881695%2CjieqiUserUname%3Dsealoyal%2CjieqiUserName%3Dsealoyal%2CjieqiUserGroup%3D3%2CjieqiUserGroupName%3D%C6%D5%CD%A8%BB%E1%D4%B1%2CjieqiUserVip%3D0%2CjieqiUserHonorId%3D%2CjieqiUserHonor%3D%CA%E9%BC%EB%2CjieqiUserPassword%3D0659c7992e268962384eb17fafe88364%2CjieqiUserUname_un%3Dsealoyal%2CjieqiUserName_un%3Dsealoyal%2CjieqiUserHonor_un%3D%26%23x4E66%3B%26%23x8327%3B%2CjieqiUserGroupName_un%3D%26%23x666E%3B%26%23x901A%3B%26%23x4F1A%3B%26%23x5458%3B%2CjieqiUserLogin%3D1622211550; jieqiVisitInfo=jieqiUserLogin%3D1622211550%2CjieqiUserId%3D881695");
+            var req = new RestRequest("/saerch.php", Method.POST);
+            //req.AddHeader("cookie", "PHPSESSID=a2hf580qsmbfhq81j4hliiqv7q; jieqiUserInfo=jieqiUserId%3D881695%2CjieqiUserUname%3Dsealoyal%2CjieqiUserName%3Dsealoyal%2CjieqiUserGroup%3D3%2CjieqiUserGroupName%3D%C6%D5%CD%A8%BB%E1%D4%B1%2CjieqiUserVip%3D0%2CjieqiUserHonorId%3D%2CjieqiUserHonor%3D%CA%E9%BC%EB%2CjieqiUserPassword%3D0659c7992e268962384eb17fafe88364%2CjieqiUserUname_un%3Dsealoyal%2CjieqiUserName_un%3Dsealoyal%2CjieqiUserHonor_un%3D%26%23x4E66%3B%26%23x8327%3B%2CjieqiUserGroupName_un%3D%26%23x666E%3B%26%23x901A%3B%26%23x4F1A%3B%26%23x5458%3B%2CjieqiUserLogin%3D1622211550; jieqiVisitInfo=jieqiUserLogin%3D1622211550%2CjieqiUserId%3D881695");
+            req.AddHeader("cookie",string.Join("; ", cookies));
             req.AddParameter("application/x-www-form-urlencoded", $"searchkey={EncodeGBK(keyword)}&searchtype=all", ParameterType.RequestBody);
             var res = await _restClient.ExecuteAsync(req);
             if (res.IsSuccessful) {

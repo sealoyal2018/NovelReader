@@ -6,6 +6,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Framework\Models\**" />
+    <EmbeddedResource Remove="Framework\Models\**" />
+    <None Remove="Framework\Models\**" />
+    <Page Remove="Framework\Models\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Resources\Images\close.png" />
     <None Remove="Resources\Images\logo.png" />
     <None Remove="Resources\Images\zuidahua.png" />
@@ -28,10 +35,6 @@
     <Resource Include="Resources\Images\logo.png" />
     <Resource Include="Resources\Images\zuidahua.png" />
     <Resource Include="Resources\Images\zuixiaohua.png" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Framework\Models\" />
   </ItemGroup>
 
 </Project>
