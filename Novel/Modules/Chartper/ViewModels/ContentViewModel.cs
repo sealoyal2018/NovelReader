@@ -1,18 +1,14 @@
-﻿using Caliburn.Micro;
-using Novel.Service;
-using Novel.Service.Models;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.Composition;
-using System.Linq;
-using System.Text;
+﻿using System.ComponentModel.Composition;
 using System.Threading;
 using System.Threading.Tasks;
+using Caliburn.Micro;
+using Novel.Service;
+using Novel.Service.Models;
 
-namespace Novel.Modules.Document.ViewModels {
+namespace Novel.Modules.Chartper.ViewModels {
+    
     [Export(typeof(ContentViewModel))]
-    [Export(typeof(IDocument))]
-    public class ContentViewModel : Screen, IDocument {
+    public class ContentViewModel : Screen, IChartper {
         private readonly NovelService _service;
         private string href;
 
@@ -20,29 +16,6 @@ namespace Novel.Modules.Document.ViewModels {
         /// 当前小说内容
         /// </summary>
         private NovelContent novelContent;
-        public string Name {
-            get {
-                return "小说内容";
-            }
-        }
-
-        public string Icon {
-            get {
-                return string.Empty;
-            }
-        }
-
-        public bool Show {
-            get {
-                return false;
-            }
-        }
-
-        public int Index {
-            get {
-                return 8;
-            }
-        }
 
         public NovelContent NovelContent {
             get {

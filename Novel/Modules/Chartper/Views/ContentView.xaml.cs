@@ -13,12 +13,12 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Novel.Modules.Document.Views {
+namespace Novel.Modules.Chartper.Views {
     /// <summary>
-    /// MartialArtsView.xaml 的交互逻辑
+    /// ContentView.xaml 的交互逻辑
     /// </summary>
-    public partial class MartialArtsView : UserControl {
-        public MartialArtsView() {
+    public partial class ContentView : UserControl {
+        public ContentView() {
             InitializeComponent();
         }
     }

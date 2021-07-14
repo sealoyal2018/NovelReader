@@ -16,17 +16,9 @@ namespace Novel.Modules.Shell.ViewModels {
     [Export(typeof(ShellViewModel))]
     [Export(typeof(IShell))]
     public class ShellViewModel: Conductor<IDocument>.Collection.OneActive, IShell {
-
-        private readonly BindableCollection<IDocument> _documents;
         private readonly CommandBase _searchCommand;
         private bool showProgressBar;
         private bool isShowUpdateInfo;
-
-        public BindableCollection<IDocument> Documents {
-            get {
-                return _documents;
-            }
-        }
 
         public CommandBase SearchCommand {
             get {
@@ -59,10 +51,9 @@ namespace Novel.Modules.Shell.ViewModels {
         }
 
         [ImportingConstructor]
-        public ShellViewModel([ImportMany]IEnumerable<IDocument> documents) {
-            _documents = new BindableCollection<IDocument>(documents.Where(x=> x.Show).OrderBy(x=> x.Index));
+        public ShellViewModel(RecommendViewModel recommendViewModel) {
             _searchCommand = new CommandBase(OpenSearch);
-            ActiveItem = _documents.First();
+            ActiveItem = recommendViewModel;
             DisplayName = "铅笔小说客户端";
         }
 
@@ -137,11 +128,11 @@ namespace Novel.Modules.Shell.ViewModels {
                 var updateView = IoC.Get<UpdateInfoViewModel>();
                 await updateView.ShowDialogAsync();
             }
-            var loginViewModel = IoC.Get<LoginViewModel>();
-            var ret = await loginViewModel.ShowDialogAsync();
-            if (!ret) {
-                await TryCloseAsync();
-            }
+            //var loginViewModel = IoC.Get<LoginViewModel>();
+            //var ret = await loginViewModel.ShowDialogAsync();
+            //if (!ret) {
+            //    await TryCloseAsync();
+            //}
         }
 
     }

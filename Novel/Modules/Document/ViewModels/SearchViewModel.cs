@@ -6,6 +6,7 @@ using System.ComponentModel.Composition;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using Novel.Modules.Chartper.ViewModels;
 
 namespace Novel.Modules.Document.ViewModels {
 
@@ -15,33 +16,9 @@ namespace Novel.Modules.Document.ViewModels {
         
         private readonly NovelService _service;
         private readonly ContentViewModel _contentViewModel;
-        private readonly CharpterViewModel _charpterViewModel;
+        private readonly ActicleContentViewModel _acticleContentViewModel;
         private string keyword;
         private BindableCollection<NovelInfo> novels;
-
-        public string Name {
-            get {
-                return "搜   索";
-            }
-        }
-
-        public string Icon {
-            get {
-                return string.Empty;
-            }
-        }
-
-        public bool Show {
-            get {
-                return false;
-            }
-        }
-
-        public int Index {
-            get {
-                return 5;
-            }
-        }
 
         public string Keyword {
             get {
@@ -65,10 +42,10 @@ namespace Novel.Modules.Document.ViewModels {
         }
 
         [ImportingConstructor]
-        public SearchViewModel(NovelService service, ContentViewModel contentViewModel, CharpterViewModel charpterViewModel) {
+        public SearchViewModel(NovelService service, ContentViewModel contentViewModel, ActicleContentViewModel acticleContentViewModel) {
             this._service = service;
             this._contentViewModel = contentViewModel;
-            this._charpterViewModel = charpterViewModel;
+            _acticleContentViewModel = acticleContentViewModel;
         }
 
         /// <summary>
@@ -76,9 +53,9 @@ namespace Novel.Modules.Document.ViewModels {
         /// </summary>
         /// <param name="novel"></param>
         public void ToCharpter(NovelInfo novel) {
-            this._charpterViewModel.Novel = novel;
+            this._acticleContentViewModel.Novel = novel;
             var shell = IoC.Get<ShellViewModel>();
-            shell.ActiveItem = this._charpterViewModel;
+            shell.ActiveItem = this._acticleContentViewModel;
         }
 
         /// <summary>
@@ -86,9 +63,9 @@ namespace Novel.Modules.Document.ViewModels {
         /// </summary>
         /// <param name="novel"></param>
         public void ToContent(NovelInfo novel) {
-            this._contentViewModel.Href = novel.LastCharpter.Href;
-            var shell = IoC.Get<ShellViewModel>();
-            shell.ActiveItem = this._contentViewModel;
+            // this._contentViewModel.Href = novel.LastCharpter.Href;
+            // var shell = IoC.Get<ShellViewModel>();
+            // shell.ActiveItem = this._contentViewModel;
         }
 
         /// <summary>

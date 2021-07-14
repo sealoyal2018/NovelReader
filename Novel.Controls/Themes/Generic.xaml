@@ -1,8 +1,9 @@
 <ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="clr-namespace:Novel.Controls">
+    xmlns:local="clr-namespace:Novel.Controls"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="/Novel.Controls;component/IconButton/IconButton.xaml" />
+        <ResourceDictionary Source="/Novel.Controls;component/Themes/Style/IconButton.xaml" />
+        <ResourceDictionary Source="/Novel.Controls;component/Themes/Style/TreeListView.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

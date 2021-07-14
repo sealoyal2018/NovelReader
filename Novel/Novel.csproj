@@ -10,9 +10,16 @@
     <EmbeddedResource Remove="Framework\Models\**" />
     <None Remove="Framework\Models\**" />
     <Page Remove="Framework\Models\**" />
+    <Page Update="Modules\Chartper\Views\ContentView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Update="Modules\Chartper\Views\ContentView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Resources\Fonts\fontawesome.ttf" />
     <None Remove="Resources\Images\close.png" />
     <None Remove="Resources\Images\logo.png" />
     <None Remove="Resources\Images\zuidahua.png" />
@@ -31,6 +38,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Resources\Fonts\fontawesome.ttf" />
     <Resource Include="Resources\Images\close.png" />
     <Resource Include="Resources\Images\logo.png" />
     <Resource Include="Resources\Images\zuidahua.png" />

@@ -2,41 +2,19 @@
 using Novel.Modules.Shell.ViewModels;
 using Novel.Service;
 using Novel.Service.Models;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.Composition;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace Novel.Modules.Document.ViewModels {
 
-    [Export(typeof(IDocument))]
+    [Export(typeof(RecommendViewModel))]
     public class RecommendViewModel : Screen, IDocument {
         private readonly NovelService _service;
-        private readonly CharpterViewModel _charpterViewModel;
-        private BindableCollection<Recommend> recommends;
+        private readonly ActicleContentViewModel _acticleContentViewModel;
+        private BindableCollection<NovelInfo> recommends;
 
-        public string Name {
-            get {
-                return "热门推荐";
-            }
-        }
-
-        public string Icon {
-            get {
-                return string.Empty;
-            }
-        }
-
-        public bool Show {
-            get {
-                return true;
-            }
-        }
-
-        public BindableCollection<Recommend> Recommends {
+        public BindableCollection<NovelInfo> Recommends {
             get {
                 return recommends;
             }
@@ -47,22 +25,18 @@ namespace Novel.Modules.Document.ViewModels {
             }
         }
 
-        public int Index {
-            get {
-                return 0;
-            }
-        }
 
         [ImportingConstructor]
-        public RecommendViewModel(NovelService service, CharpterViewModel charpterViewModel) {
-            recommends = new BindableCollection<Recommend>();
+        public RecommendViewModel(NovelService service, ActicleContentViewModel acticleContentViewModel) {
+            recommends = new BindableCollection<NovelInfo>();
             this._service = service;
-            this._charpterViewModel = charpterViewModel;
+            _acticleContentViewModel = acticleContentViewModel;
         }
 
         protected override async Task OnActivateAsync(CancellationToken cancellationToken) {
             var ret = await this._service.GetRecommendNovel();
-            Recommends = new BindableCollection<Recommend>(ret);
+            Recommends.Clear();
+            ret.ForEach(x => Recommends.AddRange(x.Novels));
             await base.OnActivateAsync(cancellationToken);
         }
       
@@ -70,32 +44,24 @@ namespace Novel.Modules.Document.ViewModels {
         /// 跳转到章节列表
         /// </summary>
         /// <param name="novel"></param>
-        public void ToCharpterOfLeft(Recommend recommend) {
-            var novel = recommend.Novels[0];
-            this._charpterViewModel.Novel = novel;
-            var shell = IoC.Get<ShellViewModel>();
-            shell.ActiveItem = this._charpterViewModel;
+        public void ToCharpterOfLeft(object obj) {
+            if (obj is NovelInfo info)
+            {
+                _acticleContentViewModel.Novel = info;
+                var shell = IoC.Get<ShellViewModel>();
+                shell.ActiveItem = _acticleContentViewModel;
+            }
         }
 
-        /// <summary>
-        /// 跳转到章节列表
-        /// </summary>
-        /// <param name="novel"></param>
-        public void ToCharpterOfRight(Recommend recommend) {
-            var novel = recommend.Novels[1];
-            this._charpterViewModel.Novel = novel;
-            var shell = IoC.Get<ShellViewModel>();
-            shell.ActiveItem = this._charpterViewModel;
-        }
 
         /// <summary>
         /// 跳转到章节内容
         /// </summary>
         /// <param name="novel"></param>
         public void ToCharpter(NovelInfo novel) {
-            this._charpterViewModel.Novel = novel;
-            var shell = IoC.Get<ShellViewModel>();
-            shell.ActiveItem = this._charpterViewModel;
+            // this._charpterViewModel.Novel = novel;
+            // var shell = IoC.Get<ShellViewModel>();
+            // shell.ActiveItem = this._charpterViewModel;
         }
     }
 }

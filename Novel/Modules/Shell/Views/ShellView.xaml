@@ -1,27 +1,27 @@
 ﻿<Window
+    AllowsTransparency="True"
+    Height="670"
+    MinHeight="670"
+    MinWidth="1083"
+    ResizeMode="CanResizeWithGrip"
+    Title="{Binding DisplayName, Mode=OneWay}"
+    Width="1083"
+    WindowStartupLocation="CenterScreen"
+    WindowStyle="None"
+    mc:Ignorable="d"
     x:Class="Novel.Modules.Shell.Views.ShellView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:cal="http://caliburnmicro.com"
     xmlns:ctl="clr-namespace:Novel.Controls;assembly=Novel.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:hc="https://handyorg.github.io/handycontrol"
     xmlns:local="clr-namespace:Novel"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Title="{Binding DisplayName, Mode=OneWay}"
-    Width="1083"
-    Height="670"
-    MinWidth="1083"
-    MinHeight="670"
-    AllowsTransparency="True"
-    ResizeMode="CanResizeWithGrip"
-    WindowStartupLocation="CenterScreen"
-    WindowStyle="None"
-    mc:Ignorable="d">
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
-        <Style x:Key="IconButton" TargetType="Button">
+        <Style TargetType="Button" x:Key="IconButton">
             <Setter Property="BorderBrush" Value="Transparent" />
             <Setter Property="Focusable" Value="False" />
             <Setter Property="Background" Value="Transparent" />
@@ -59,7 +59,7 @@
             </Grid.RowDefinitions>
 
             <!--  title bar  -->
-            <Grid cal:Message.Attach="[Event MouseLeftButtonDown]=[Action MoveWindow]" Background="Transparent">
+            <Grid Background="Transparent" cal:Message.Attach="[Event MouseLeftButtonDown]=[Action MoveWindow]">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="200" />
                     <ColumnDefinition Width="*" />
@@ -69,102 +69,110 @@
 
 
                 <hc:SearchBar
-                    x:Name="Search"
-                    Grid.Column="1"
-                    Width="200"
-                    Height="30"
-                    HorizontalAlignment="Left"
-                    hc:InfoElement.Placeholder="输入小说名称搜索"
+                    BorderThickness="0,0,1,1"
                     Command="{Binding SearchCommand}"
                     CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Text}"
-                    Style="{StaticResource SearchBarPlus}" />
+                    Grid.Column="1"
+                    Height="30"
+                    HorizontalAlignment="Left"
+                    Style="{StaticResource SearchBarPlus}"
+                    Width="200"
+                    hc:InfoElement.Placeholder="输入小说名称搜索"
+                    x:Name="Search" />
 
                 <StackPanel
                     Grid.Column="2"
-                    Margin="4,18"
-                    VerticalAlignment="Center"
-                    Orientation="Horizontal">
-                    <Button
-                        x:Name="MinimizeWindow"
-                        Margin="8,0"
-                        Style="{StaticResource IconButton}">
-                        <Image Source="pack://application:,,,/Novel;component/Resources/Images/zuixiaohua.png" />
+                    Orientation="Horizontal"
+                    VerticalAlignment="Top">
+                    <Button x:Name="MinimizeWindow">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border
+                                    Background="{TemplateBinding Background}"
+                                    Name="bd"
+                                    Padding="18,0">
+                                    <Grid>
+                                        <Path Fill="Black" VerticalAlignment="Center">
+                                            <Path.Data>
+                                                <Geometry>M0,4 L10,4 L10,5 L0,5 z</Geometry>
+                                            </Path.Data>
+                                        </Path>
+                                    </Grid>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" TargetName="bd" Value="LightGray" />
+                                    </Trigger>
+                                    <Trigger Property="IsPressed" Value="True">
+                                        <Setter Property="Background" TargetName="bd" Value="Gray" />
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Button.Template>
                     </Button>
-                    <Button
-                        x:Name="MaximizeWindow"
-                        Margin="8,0"
-                        Style="{StaticResource IconButton}">
-                        <Image Source="pack://application:,,,/Novel;component/Resources/Images/zuidahua.png" />
+                    <Button x:Name="MaximizeWindow">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border
+                                    Background="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=Background}"
+                                    Name="bd"
+                                    Padding="18,0">
+                                    <Grid>
+                                        <Path Fill="Black" VerticalAlignment="Center">
+                                            <Path.Data>
+                                                <Geometry>M1,1 L1,9 L9,9 L9,1 z M0,0 L10,0 L10,10 L0,10 z</Geometry>
+                                            </Path.Data>
+                                        </Path>
+                                    </Grid>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" TargetName="bd" Value="LightGray" />
+                                    </Trigger>
+                                    <Trigger Property="IsPressed" Value="True">
+                                        <Setter Property="Background" TargetName="bd" Value="Gray" />
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Button.Template>
                     </Button>
-                    <Button
-                        x:Name="CloseWindow"
-                        Margin="8,0"
-                        Style="{StaticResource IconButton}">
-                        <Image Source="pack://application:,,,/Novel;component/Resources/Images/close.png" />
+                    <Button x:Name="CloseWindow">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border
+                                    Background="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=Background}"
+                                    Padding="18,0"
+                                    x:Name="bd">
+                                    <Grid>
+                                        <Path Fill="Black" VerticalAlignment="Center">
+                                            <Path.Data>
+                                                <Geometry>M0.7,0 L5,4.3 L9.3,0 L10,0.7 L5.7,5 L10,9.3 L9.3,10 L5,5.7 L0.7,10 L0,9.3 L4.3,5 L0,0.7 z</Geometry>
+                                            </Path.Data>
+                                        </Path>
+                                    </Grid>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" TargetName="bd" Value="Red" />
+                                    </Trigger>
+                                    <Trigger Property="IsPressed" Value="True">
+                                        <Setter Property="Background" TargetName="bd" Value="DarkRed" />
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Button.Template>
                     </Button>
                 </StackPanel>
 
             </Grid>
 
             <Border
-                Grid.Row="1"
-                Background="Red"
-                BorderBrush="Red"
-                BorderThickness="1" />
+                Background="Transparent"
+                BorderBrush="Transparent"
+                BorderThickness="1"
+                Grid.Row="1" />
 
-            <Grid Grid.Row="2">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="100" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <ListBox
-                    cal:Message.Attach="[Event SelectionChanged]=[Action ChangedDocument($eventArgs)]"
-                    ItemsSource="{Binding Documents}"
-                    SelectedIndex="0">
-                    <ListBox.ItemContainerStyle>
-                        <Style TargetType="ListBoxItem">
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate TargetType="ListBoxItem">
-                                        <Border
-                                            x:Name="PART_Panel"
-                                            Background="{TemplateBinding Background}"
-                                            BorderBrush="{TemplateBinding BorderBrush}"
-                                            BorderThickness="{TemplateBinding BorderThickness}">
-                                            <Grid Margin="8">
-                                                <ContentPresenter TextBlock.Foreground="{TemplateBinding Foreground}" />
-                                            </Grid>
-                                        </Border>
-                                        <ControlTemplate.Triggers>
-                                            <Trigger Property="IsSelected" Value="True">
-                                                <Setter Property="Background" Value="Gray" />
-                                            </Trigger>
-                                        </ControlTemplate.Triggers>
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                        </Style>
-                    </ListBox.ItemContainerStyle>
-                    <ListBox.ItemTemplate>
-                        <DataTemplate DataType="{x:Type local:IDocument}">
-                            <Border>
-                                <Grid>
-                                    <TextBlock HorizontalAlignment="Center" Text="{Binding Name}" />
-                                </Grid>
-                            </Border>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
-                <Grid Grid.Column="1" Margin="8">
-                    <ContentControl x:Name="ActiveItem" />
-                    <hc:CircleProgressBar
-                        Width="100"
-                        Height="100"
-                        IsIndeterminate="True"
-                        Style="{StaticResource ProgressBarDangerCircle}"
-                        Visibility="{Binding ShowProgressBar, Converter={StaticResource BooleanToVisibilityConverter}}" />
-                </Grid>
-            </Grid>
+            <ContentControl Grid.Row="2" x:Name="ActiveItem" />
         </Grid>
     </Border>
 </Window>

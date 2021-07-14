@@ -7,9 +7,5 @@ using System.Threading.Tasks;
 
 namespace Novel {
     public interface IDocument {
-        public string Name { get; }
-        public string Icon { get; }
-        public bool Show { get; }
-        public int Index { get; }
     }
 }
