@@ -1,6 +1,8 @@
 ﻿using System.ComponentModel.Composition;
+using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Documents;
 using Caliburn.Micro;
 using Novel.Service;
 using Novel.Service.Models;
@@ -8,45 +10,45 @@ using Novel.Service.Models;
 namespace Novel.Modules.Chartper.ViewModels {
     
     [Export(typeof(ContentViewModel))]
-    public class ContentViewModel : Screen, IChartper {
+    public class ContentViewModel : Screen, IChartper, IHandle<string> {
+        private string title;
+        private readonly FlowDocument _document;
         private readonly NovelService _service;
-        private string href;
 
-        /// <summary>
-        /// 当前小说内容
-        /// </summary>
-        private NovelContent novelContent;
-
-        public NovelContent NovelContent {
+        public string Title {
             get {
-                return novelContent;
+                return title;
             }
-
             set {
-                novelContent = value;
-                NotifyOfPropertyChange(nameof(NovelContent));
+                title = value;
+                NotifyOfPropertyChange();
             }
         }
 
-        public string Href {
-            get {
-                return href;
-            }
-
-            set {
-                href = value;
-            }
-        }
-
+        public FlowDocument Document => _document;
+        
+        
         [ImportingConstructor]
         public ContentViewModel(NovelService service) {
             this._service = service;
-            novelContent = new NovelContent();
-        }
-        protected override async Task OnActivateAsync(CancellationToken cancellationToken) {
-            NovelContent = await this._service.GetNovelContent(Href);
-            await base.OnActivateAsync(cancellationToken);
+            _document = new FlowDocument();
+            IoC.Get<IEventAggregator>().SubscribeOnPublishedThread(this);
         }
 
+        public async Task HandleAsync(string message, CancellationToken cancellationToken) {
+            var novelContent = await this._service.GetNovelContent(message);
+            Title = novelContent.Title;
+            Document.Blocks.Clear();
+            using var sr = new StringReader(novelContent.Content);
+            var line = await sr.ReadLineAsync();
+            while (!string.IsNullOrEmpty(line))
+            {
+                var para = new Paragraph();
+                var run = new Run(line);
+                para.Inlines.Add(run);
+                Document.Blocks.Add(para);
+                line = await sr.ReadLineAsync();
+            }
+        }
     }
 }

@@ -9,7 +9,7 @@
     xmlns:local="clr-namespace:Novel.Modules.Document.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <Grid Margin="150,0">
+    <Grid Margin="10,0">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
@@ -17,17 +17,12 @@
         <TextBlock
             FontSize="26"
             Margin="10"
-            Text="{Binding NovelContent.Title}"
+            Text="{Binding Title}"
             TextAlignment="Center" />
-        <hc:ScrollViewer
-            Grid.Row="1"
-            HorizontalScrollBarVisibility="Disabled"
-            VerticalScrollBarVisibility="Auto">
-            <TextBlock
-                FontSize="14"
-                LineHeight="30"
-                Text="{Binding NovelContent.Content}"
-                TextWrapping="Wrap" />
-        </hc:ScrollViewer>
+        <FlowDocumentScrollViewer
+            BorderThickness="0"
+            Document="{Binding Document}"
+            FlowDirection="LeftToRight"
+            Grid.Row="1" />
     </Grid>
 </UserControl>
