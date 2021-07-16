@@ -1,28 +1,30 @@
 ﻿<UserControl
-    d:DesignHeight="450"
-    d:DesignWidth="800"
-    mc:Ignorable="d"
     x:Class="Novel.Modules.Chartper.Views.ContentView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:hc="https://handyorg.github.io/handycontrol"
     xmlns:local="clr-namespace:Novel.Modules.Document.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
     <Grid Margin="10,0">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <TextBlock
+            Margin="0,0,0,10"
             FontSize="26"
-            Margin="10"
             Text="{Binding Title}"
             TextAlignment="Center" />
         <FlowDocumentScrollViewer
+            Grid.Row="1"
             BorderThickness="0"
             Document="{Binding Document}"
             FlowDirection="LeftToRight"
-            Grid.Row="1" />
+            HorizontalScrollBarVisibility="Disabled"
+            VerticalScrollBarVisibility="Auto" />
     </Grid>
 </UserControl>

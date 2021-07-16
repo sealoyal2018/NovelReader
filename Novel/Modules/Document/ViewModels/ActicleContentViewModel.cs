@@ -16,13 +16,8 @@ using Novel.Service.Models;
 
 namespace Novel.Modules.Document.ViewModels {
     [Export(typeof(ActicleContentViewModel))]
-	public class ActicleContentViewModel: Conductor<IChartper>, IDocument {
-        
-		/// <summary>
-		/// 小说服务
-		/// </summary>
-		private readonly NovelService _service;
-
+    public class ActicleContentViewModel : Conductor<IChartper>, IDocument {
+        private readonly NovelService _service;
         private readonly DefaultCharpterViewModel _defaultCharpterViewModel;
         private TreeListViewNode root;
 
@@ -40,7 +35,7 @@ namespace Novel.Modules.Document.ViewModels {
                 NotifyOfPropertyChange();
             }
         }
-        
+
         public NovelInfo Novel {
             get {
                 return novel;
@@ -69,17 +64,14 @@ namespace Novel.Modules.Document.ViewModels {
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
         protected override async Task OnActivateAsync(CancellationToken cancellationToken) {
+            if(ActiveItem != _defaultCharpterViewModel) {
+                ActiveItem = _defaultCharpterViewModel;
+            }
             var ret = await this._service.GetCharpters(this.Novel.Href);
-            ret.ForEach(x=> Root.Children.Add(new CharpterNode(x.Title, root){Href = x.Href}));
+            ret.ForEach(x => Root.Children.Add(new CharpterNode(x.Title, root) { Href = x.Href }));
             Root.IsExpanded = true;
             await base.OnActivateAsync(cancellationToken);
             NotifyOfPropertyChange(nameof(Root));
-        }
-
-        public void ToContent(NovelCharpter charpter) {
-            // var shell = IoC.Get<ShellViewModel>();
-            // this._contentViewModel.Href = charpter.Href;
-            // shell.ActiveItem = this._contentViewModel;
         }
     }
 }

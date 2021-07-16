@@ -128,11 +128,11 @@ namespace Novel.Modules.Shell.ViewModels {
                 var updateView = IoC.Get<UpdateInfoViewModel>();
                 await updateView.ShowDialogAsync();
             }
-            //var loginViewModel = IoC.Get<LoginViewModel>();
-            //var ret = await loginViewModel.ShowDialogAsync();
-            //if (!ret) {
-            //    await TryCloseAsync();
-            //}
+            /*var loginViewModel = IoC.Get<LoginViewModel>();
+            var ret = await loginViewModel.ShowDialogAsync();
+            if (!ret) {
+                await TryCloseAsync();
+            }*/
         }
 
     }

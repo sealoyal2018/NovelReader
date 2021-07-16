@@ -27,6 +27,7 @@ namespace Novel.Modules.Document.ViewModels {
 
             set {
                 keyword = value;
+                NotifyOfPropertyChange();
             }
         }
 
@@ -37,7 +38,7 @@ namespace Novel.Modules.Document.ViewModels {
 
             set {
                 novels = value;
-                NotifyOfPropertyChange(nameof(Novels));
+                NotifyOfPropertyChange();
             }
         }
 
@@ -52,20 +53,12 @@ namespace Novel.Modules.Document.ViewModels {
         /// 跳转到章节列表
         /// </summary>
         /// <param name="novel"></param>
-        public void ToCharpter(NovelInfo novel) {
-            this._acticleContentViewModel.Novel = novel;
-            var shell = IoC.Get<ShellViewModel>();
-            shell.ActiveItem = this._acticleContentViewModel;
-        }
-
-        /// <summary>
-        /// 跳转到章节内容
-        /// </summary>
-        /// <param name="novel"></param>
-        public void ToContent(NovelInfo novel) {
-            // this._contentViewModel.Href = novel.LastCharpter.Href;
-            // var shell = IoC.Get<ShellViewModel>();
-            // shell.ActiveItem = this._contentViewModel;
+        public void ToCharpterOfLeft(object obj) {
+            if (obj is NovelInfo info) {
+                _acticleContentViewModel.Novel = info;
+                var shell = IoC.Get<ShellViewModel>();
+                shell.ActiveItem = _acticleContentViewModel;
+            }
         }
 
         /// <summary>

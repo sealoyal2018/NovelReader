@@ -1,4 +1,4 @@
-﻿using System.ComponentModel.Composition;
+using System.ComponentModel.Composition;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;

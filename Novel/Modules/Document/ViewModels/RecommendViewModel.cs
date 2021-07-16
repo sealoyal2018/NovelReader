@@ -39,29 +39,17 @@ namespace Novel.Modules.Document.ViewModels {
             ret.ForEach(x => Recommends.AddRange(x.Novels));
             await base.OnActivateAsync(cancellationToken);
         }
-      
+
         /// <summary>
         /// 跳转到章节列表
         /// </summary>
         /// <param name="novel"></param>
         public void ToCharpterOfLeft(object obj) {
-            if (obj is NovelInfo info)
-            {
+            if (obj is NovelInfo info) {
                 _acticleContentViewModel.Novel = info;
                 var shell = IoC.Get<ShellViewModel>();
                 shell.ActiveItem = _acticleContentViewModel;
             }
-        }
-
-
-        /// <summary>
-        /// 跳转到章节内容
-        /// </summary>
-        /// <param name="novel"></param>
-        public void ToCharpter(NovelInfo novel) {
-            // this._charpterViewModel.Novel = novel;
-            // var shell = IoC.Get<ShellViewModel>();
-            // shell.ActiveItem = this._charpterViewModel;
         }
     }
 }

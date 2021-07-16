@@ -6,9 +6,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Page Update="Themes\Style\IconButton.xaml">
+    <None Remove="Themes\Fonts\fontawesome.ttf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Themes\Style\FontIconButton.xaml">
       <SubType>Designer</SubType>
     </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Themes\Fonts\fontawesome.ttf" />
   </ItemGroup>
 
 </Project>
