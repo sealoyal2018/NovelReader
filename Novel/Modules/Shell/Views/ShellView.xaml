@@ -167,8 +167,7 @@
 
             <ctr:FloatingActionMenu
                 Grid.Row="1"
-                Width="50"
-                Height="50"
+                Margin="0,0,30,30"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Bottom"
                 cal:Message.Attach="[Event ItemClick]=[Action OnNavItemClick($eventArgs)]"
