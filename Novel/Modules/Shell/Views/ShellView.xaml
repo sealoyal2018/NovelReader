@@ -5,9 +5,9 @@
     xmlns:cal="http://caliburnmicro.com"
     xmlns:ctr="clr-namespace:Novel.Controls;assembly=Novel.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:cvt="clr-namespace:Novel.Converters"
     xmlns:hc="https://handyorg.github.io/handycontrol"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:mod="clr-namespace:Novel.Modules.Shell.Models"
     Title="{Binding DisplayName, Mode=OneWay}"
     Width="1200"
     Height="760"
@@ -21,33 +21,7 @@
 
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
-        <Style x:Key="IconButton" TargetType="Button">
-            <Setter Property="BorderBrush" Value="Transparent" />
-            <Setter Property="Focusable" Value="False" />
-            <Setter Property="Background" Value="Transparent" />
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Border
-                            Background="{TemplateBinding Background}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}">
-                            <Grid Margin="{TemplateBinding Padding}">
-                                <ContentPresenter />
-                            </Grid>
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="Red" />
-                            </Trigger>
-                            <Trigger Property="IsPressed" Value="True">
-                                <Setter Property="Background" Value="DarkRed" />
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
+        <cvt:BooleanToVisibilityReConverter x:Key="BooleanToVisibilityReConverter" />
     </Window.Resources>
 
     <Border BorderBrush="Gray" BorderThickness="0.4">
@@ -81,7 +55,19 @@
                     Grid.Column="3"
                     VerticalAlignment="Top"
                     Columns="4">
-                    <ctr:FontIconButton ShowContent="False" UnicodeText="&#xf013;" />
+                    <ctr:FontIconButton 
+                        Visibility="{Binding Service.IsLogin, Converter={StaticResource BooleanToVisibilityConverter}}"
+                        FontSize="18" Name="SignOutAsync"
+                        ShowContent="False"
+                        ToolTip="退出"
+                        UnicodeText="&#xf007;" />
+                    <ctr:FontIconButton
+                        FontSize="18" 
+                        Name="SignInAsync"
+                        ShowContent="False"
+                        ToolTip="登录"  
+                        Visibility="{Binding Service.IsLogin, Converter={StaticResource BooleanToVisibilityReConverter}}"
+                        UnicodeText="&#xf090;" />
                     <Button x:Name="MinimizeWindow">
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
@@ -171,9 +157,9 @@
                 HorizontalAlignment="Right"
                 VerticalAlignment="Bottom"
                 cal:Message.Attach="[Event ItemClick]=[Action OnNavItemClick($eventArgs)]"
-                DisplayMemberPath="Name"
+                DisplayMemberPath="TipText"
                 DisplayTipContentMemberPath="Name"
-                ItemsSource="{Binding Navs}"
+                ItemsSource="{Binding Documents, Mode=OneWay}"
                 PlacementDirection="Top" />
 
         </Grid>

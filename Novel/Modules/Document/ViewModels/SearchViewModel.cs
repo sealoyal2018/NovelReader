@@ -11,11 +11,11 @@ using Novel.Modules.Chartper.ViewModels;
 namespace Novel.Modules.Document.ViewModels {
 
     [Export(typeof(SearchViewModel))]
-    [Export(typeof(IDocument))]
     public class SearchViewModel : Screen, IDocument {
         
         private readonly NovelService _service;
         private readonly ContentViewModel _contentViewModel;
+        private readonly string _title = "搜索";
         private readonly ActicleContentViewModel _acticleContentViewModel;
         private string keyword;
         private BindableCollection<NovelInfo> novels;
@@ -39,6 +39,24 @@ namespace Novel.Modules.Document.ViewModels {
             set {
                 novels = value;
                 NotifyOfPropertyChange();
+            }
+        }
+
+        public string Name {
+            get {
+                return _title;
+            }
+        }
+
+        public string TipText {
+            get {
+                return _title;
+            }
+        }
+
+        public int Order {
+            get {
+                return 20;
             }
         }
 

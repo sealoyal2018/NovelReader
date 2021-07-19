@@ -9,10 +9,12 @@ using System.Threading.Tasks;
 namespace Novel.Modules.Document.ViewModels {
 
     [Export(typeof(RecommendViewModel))]
+    [Export(typeof(IDocument))]
     public class RecommendViewModel : Screen, IDocument {
         private readonly NovelService _service;
         private readonly ActicleContentViewModel _acticleContentViewModel;
         private BindableCollection<NovelInfo> recommends;
+        private readonly string _title = "发现";
 
         public BindableCollection<NovelInfo> Recommends {
             get {
@@ -25,6 +27,23 @@ namespace Novel.Modules.Document.ViewModels {
             }
         }
 
+        public string Name {
+            get {
+                return _title;
+            }
+        }
+
+        public string TipText {
+            get {
+                return _title;
+            }
+        }
+
+        public int Order {
+            get {
+                return 0;
+            }
+        }
 
         [ImportingConstructor]
         public RecommendViewModel(NovelService service, ActicleContentViewModel acticleContentViewModel) {

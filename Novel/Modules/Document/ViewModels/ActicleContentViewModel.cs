@@ -21,6 +21,7 @@ namespace Novel.Modules.Document.ViewModels
         private readonly NovelService _service;
         private readonly DefaultCharpterViewModel _defaultCharpterViewModel;
         private TreeListViewNode root;
+        private readonly string _title = "章节";
 
         /// <summary>
         /// 当前小说信息
@@ -48,6 +49,24 @@ namespace Novel.Modules.Document.ViewModels
                 _defaultCharpterViewModel.Novel = novel;
                 NotifyOfPropertyChange(nameof(Novel));
                 NotifyOfPropertyChange(nameof(Root));
+            }
+        }
+
+        public string Name {
+            get {
+                return _title;
+            }
+        }
+
+        public string TipText {
+            get {
+                return _title;
+            }
+        }
+
+        public int Order {
+            get {
+                return 90;
             }
         }
 
