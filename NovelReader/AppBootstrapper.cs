@@ -76,25 +76,25 @@ namespace NovelReader {
         protected override async void OnStartup(object sender, StartupEventArgs e) {
             var ret = initTask.Result;
             if (ret) {
-                var info = await _service.GetLatestVersionInfoAsync();
-                if (string.Compare(info.LatestVersion, this._currentVersionInfo.LatestVersion, true) > 0) {
-                    // 启动更新软件
-                    var fileName = "Novel.Update.exe";
-                    var currentDirectory = new DirectoryInfo(Directory.GetCurrentDirectory());
-                    var allFiles = currentDirectory.GetFiles();
-                    var file = allFiles.Where(x => x.Name == fileName).FirstOrDefault();
-                    var process = new Process {
-                        StartInfo = new ProcessStartInfo {
-                            WorkingDirectory = Directory.GetCurrentDirectory(),
-                            UseShellExecute = true,
-                            FileName = file.FullName,
-                            CreateNoWindow = true,
-                            Verb = "runas"
-                        }
-                    };
-                    process.Start();
-                    return;
-                }
+                //var info = await _service.GetLatestVersionInfoAsync();
+                //if (string.Compare(info.LatestVersion, this._currentVersionInfo.LatestVersion, true) > 0) {
+                //    // 启动更新软件
+                //    var fileName = "Novel.Update.exe";
+                //    var currentDirectory = new DirectoryInfo(Directory.GetCurrentDirectory());
+                //    var allFiles = currentDirectory.GetFiles();
+                //    var file = allFiles.Where(x => x.Name == fileName).FirstOrDefault();
+                //    var process = new Process {
+                //        StartInfo = new ProcessStartInfo {
+                //            WorkingDirectory = Directory.GetCurrentDirectory(),
+                //            UseShellExecute = true,
+                //            FileName = file.FullName,
+                //            CreateNoWindow = true,
+                //            Verb = "runas"
+                //        }
+                //    };
+                //    process.Start();
+                //    return;
+                //}
             }
             var shell = IoC.Get<ShellViewModel>();
             var updateInfoViewModel = IoC.Get<UpdateInfoViewModel>();
