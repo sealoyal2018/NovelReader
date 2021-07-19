@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.Specialized;
 
-namespace Novel.Controls.TreeListView {
+namespace Novel.Controls {
 
     public class TreeListViewCollection<T> : IList<T>, INotifyCollectionChanged
             where T : TreeListViewNode {

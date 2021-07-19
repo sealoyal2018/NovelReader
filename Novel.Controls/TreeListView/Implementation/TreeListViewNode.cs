@@ -4,7 +4,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace Novel.Controls.TreeListView {
+namespace Novel.Controls {
     public class TreeListViewNode : Control {
 
         public static readonly RoutedEvent ExpandedChangedEvent;

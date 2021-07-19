@@ -1,7 +1,7 @@
 ﻿<ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:local="clr-namespace:Novel.Controls.TreeListView"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:Novel.Controls">
 
     <PathGeometry x:Key="TreeArrow">
         <PathGeometry.Figures>
@@ -21,7 +21,7 @@
         </PathGeometry.Figures>
     </PathGeometry>
 
-    <Style TargetType="{x:Type ToggleButton}" x:Key="ExpandCollapseToggleStyle">
+    <Style x:Key="ExpandCollapseToggleStyle" TargetType="{x:Type ToggleButton}">
         <Setter Property="Focusable" Value="False" />
         <Setter Property="Width" Value="16" />
         <Setter Property="Height" Value="16" />
@@ -29,15 +29,15 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ToggleButton}">
                     <Border
-                        Background="Transparent"
+                        Width="16"
                         Height="16"
                         Padding="5,5,5,5"
-                        Width="16">
+                        Background="Transparent">
                         <Path
+                            x:Name="ExpandPath"
                             Data="{StaticResource TreeArrow}"
                             Fill="Transparent"
-                            Stroke="#FF989898"
-                            x:Name="ExpandPath">
+                            Stroke="#FF989898">
                             <Path.RenderTransform>
                                 <RotateTransform Angle="135" CenterX="3" CenterY="3" />
                             </Path.RenderTransform>
@@ -45,8 +45,8 @@
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Stroke" TargetName="ExpandPath" Value="#FF1BBBFA" />
-                            <Setter Property="Fill" TargetName="ExpandPath" Value="Transparent" />
+                            <Setter TargetName="ExpandPath" Property="Stroke" Value="#FF1BBBFA" />
+                            <Setter TargetName="ExpandPath" Property="Fill" Value="Transparent" />
                         </Trigger>
 
                         <Trigger Property="IsChecked" Value="True">
@@ -54,11 +54,11 @@
                                 <BeginStoryboard>
                                     <Storyboard>
                                         <DoubleAnimation
-                                            Duration="0:0:0.25"
-                                            From="135"
                                             Storyboard.TargetName="ExpandPath"
                                             Storyboard.TargetProperty="(FrameworkElement.RenderTransform).(RotateTransform.Angle)"
-                                            To="180" />
+                                            From="135"
+                                            To="180"
+                                            Duration="0:0:0.25" />
                                     </Storyboard>
                                 </BeginStoryboard>
                             </Trigger.EnterActions>
@@ -66,16 +66,16 @@
                                 <BeginStoryboard>
                                     <Storyboard>
                                         <DoubleAnimation
-                                            Duration="0:0:0.25"
-                                            From="180"
                                             Storyboard.TargetName="ExpandPath"
                                             Storyboard.TargetProperty="(FrameworkElement.RenderTransform).(RotateTransform.Angle)"
-                                            To="135" />
+                                            From="180"
+                                            To="135"
+                                            Duration="0:0:0.25" />
                                     </Storyboard>
                                 </BeginStoryboard>
                             </Trigger.ExitActions>
-                            <Setter Property="Fill" TargetName="ExpandPath" Value="#FF595959" />
-                            <Setter Property="Stroke" TargetName="ExpandPath" Value="#FF262626" />
+                            <Setter TargetName="ExpandPath" Property="Fill" Value="#FF595959" />
+                            <Setter TargetName="ExpandPath" Property="Stroke" Value="#FF262626" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -83,23 +83,23 @@
         </Setter>
     </Style>
 
-    <LinearGradientBrush EndPoint="0,1" StartPoint="0,0" x:Key="MouseOverBackground">
+    <LinearGradientBrush x:Key="MouseOverBackground" StartPoint="0,0" EndPoint="0,1">
         <LinearGradientBrush.GradientStops>
-            <GradientStop Color="#FCFDFE" Offset="0" />
-            <GradientStop Color="#F2F7FE" Offset="1" />
+            <GradientStop Offset="0" Color="#FCFDFE" />
+            <GradientStop Offset="1" Color="#F2F7FE" />
         </LinearGradientBrush.GradientStops>
     </LinearGradientBrush>
 
 
-    <LinearGradientBrush EndPoint="0,1" StartPoint="0,0" x:Key="SelectedBackground">
+    <LinearGradientBrush x:Key="SelectedBackground" StartPoint="0,0" EndPoint="0,1">
         <LinearGradientBrush.GradientStops>
-            <GradientStop Color="#DCEBFC" Offset="0" />
-            <GradientStop Color="#C1DBFC" Offset="1" />
+            <GradientStop Offset="0" Color="#DCEBFC" />
+            <GradientStop Offset="1" Color="#C1DBFC" />
         </LinearGradientBrush.GradientStops>
     </LinearGradientBrush>
 
 
-    <Style TargetType="{x:Type local:TreeListViewItem}" x:Key="{x:Static local:TreeListView.DefaultItemContainerStyleKey}" />
+    <Style x:Key="{x:Static local:TreeListView.DefaultItemContainerStyleKey}" TargetType="{x:Type local:TreeListViewItem}" />
     <Style BasedOn="{StaticResource {x:Type ListBox}}" TargetType="local:TreeListView">
         <Setter Property="Template">
             <Setter.Value>
@@ -146,11 +146,11 @@
                         <Border Padding="{Binding LevelPadding}">
                             <StackPanel
                                 HorizontalAlignment="Left"
-                                Orientation="Horizontal"
-                                VerticalAlignment="Center">
+                                VerticalAlignment="Center"
+                                Orientation="Horizontal">
                                 <ToggleButton
-                                    IsChecked="{Binding IsExpanded}"
                                     Name="expander"
+                                    IsChecked="{Binding IsExpanded}"
                                     Style="{StaticResource ExpandCollapseToggleStyle}" />
                                 <TextBlock Text="{Binding Text}" />
                             </StackPanel>
@@ -158,7 +158,7 @@
                     </Border>
                     <ControlTemplate.Triggers>
                         <DataTrigger Binding="{Binding HasItem}" Value="False">
-                            <Setter Property="Visibility" TargetName="expander" Value="Hidden" />
+                            <Setter TargetName="expander" Property="Visibility" Value="Hidden" />
                         </DataTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -166,31 +166,31 @@
         </Setter>
     </Style>
 
-    <Style TargetType="{x:Type ListViewItem}" x:Key="{x:Static local:TreeListGridView.ItemContainerStyle}">
+    <Style x:Key="{x:Static local:TreeListGridView.ItemContainerStyle}" TargetType="{x:Type ListViewItem}">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ListViewItem}">
                     <Border
+                        Name="Bd"
+                        Padding="{TemplateBinding Padding}"
                         Background="{TemplateBinding Background}"
                         BorderBrush="{TemplateBinding BorderBrush}"
                         BorderThickness="{TemplateBinding BorderThickness}"
-                        Name="Bd"
-                        Padding="{TemplateBinding Padding}"
                         SnapsToDevicePixels="true">
-                        <GridViewRowPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                        <GridViewRowPresenter VerticalAlignment="{TemplateBinding VerticalContentAlignment}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsSelected" Value="true">
-                            <Setter Property="Background" TargetName="Bd" Value="{StaticResource SelectedBackground}" />
+                            <Setter TargetName="Bd" Property="Background" Value="{StaticResource SelectedBackground}" />
                         </Trigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
                                 <Condition Property="IsSelected" Value="true" />
                                 <Condition Property="Selector.IsSelectionActive" Value="false" />
                             </MultiTrigger.Conditions>
-                            <Setter Property="Background" TargetName="Bd" Value="{StaticResource SelectedBackground}" />
+                            <Setter TargetName="Bd" Property="Background" Value="{StaticResource SelectedBackground}" />
                         </MultiTrigger>
                         <Trigger Property="IsEnabled" Value="false">
                             <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />

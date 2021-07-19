@@ -6,15 +6,16 @@ using System.ComponentModel.Composition;
 using System.Threading;
 using System.Threading.Tasks;
 using Caliburn.Micro;
-using Novel.Controls.TreeListView;
+using Novel.Controls;
 using Novel.Modules.Chartper;
 using Novel.Modules.Chartper.Models;
 using Novel.Modules.Chartper.ViewModels;
-using Novel.Modules.Shell.ViewModels;
 using Novel.Service;
 using Novel.Service.Models;
 
-namespace Novel.Modules.Document.ViewModels {
+namespace Novel.Modules.Document.ViewModels
+{
+
     [Export(typeof(ActicleContentViewModel))]
     public class ActicleContentViewModel : Conductor<IChartper>, IDocument {
         private readonly NovelService _service;

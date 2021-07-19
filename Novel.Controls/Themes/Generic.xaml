@@ -2,7 +2,9 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/Novel.Controls;component/Themes/Brushes/Colors/LightColor.xaml" />
         <ResourceDictionary Source="/Novel.Controls;component/Themes/Brushes/LightBrush.xaml" />
-        <ResourceDictionary Source="/Novel.Controls;component/Themes/Style/FontIconButton.xaml" />
-        <ResourceDictionary Source="/Novel.Controls;component/Themes/Style/TreeListView.xaml" />
+        <ResourceDictionary Source="/Novel.Controls;component/FontIconButton/Style/FontIconButton.xaml" />
+        <ResourceDictionary Source="/Novel.Controls;component/TreeListView/Style/TreeListView.xaml" />
+        <ResourceDictionary Source="/Novel.Controls;component/FlatToolTip/Style/FlatToolTip.xaml" />
+        <ResourceDictionary Source="/Novel.Controls;component/FloatingActionButton/Style/FloatingActionButton.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>
