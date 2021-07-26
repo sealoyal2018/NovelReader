@@ -70,6 +70,10 @@ namespace Novel.Update.Services {
             return false;
         }
 
+        public Task DownloadUpdateFileAsync(Action<object> p) {
+            throw new NotImplementedException();
+        }
+
         /// <summary>
         /// 获取最新版本信息
         /// </summary>
@@ -106,10 +110,11 @@ namespace Novel.Update.Services {
             if (!saveFilePath.EndsWith("\\")) {
                 saveFilePath += "\\";
             }
-
+            var value = 0d;
             foreach (var file in updateFile) {
                 var arr = file.Name.Split('.');
                 var name = arr[0];
+                var index = updateFile.IndexOf(file);
                 var nameBuilder = new StringBuilder();
                 foreach (var ch in name) {
                     if ((int)ch > 127) {
@@ -125,7 +130,7 @@ namespace Novel.Update.Services {
                     var allSize = res.ContentLength;
                     using (var fs = File.Create($"{saveFilePath}{file.Name}")) {
                         var offset = 0;
-                        var length = 1024;
+                        var length = 1024 * 10;
                         while (true) {
                             if (allSize < length + offset) {
                                 length = (int)allSize - offset;
@@ -135,13 +140,14 @@ namespace Novel.Update.Services {
                             if (offset >= allSize) {
                                 break;
                             }
-                            action(1d * offset / allSize * perMount * 100);
-                            await Task.Delay(5);
+                            var newValue = (1d * offset / allSize * perMount * 100);
+                            action(newValue + 100d / updateFile.Count * index);
+                            await Task.Delay(1);
                         }
                     }
-                    action(100d);
                 }
             }
+            action(100d);
         }
 
     }

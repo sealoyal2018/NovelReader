@@ -26,14 +26,14 @@ namespace NovelReader {
             _service = new YSService();
             this.Initialize();
             _currentVersionInfo = new VersionInfo {
-                LatestVersion = "0.2.0.210612",
+                LatestVersion = "0.3.1",
                 Summary = new List<string> {
-                    "1.添加登录功能",
-                    "2.添加更新功能",
-                    "3.修复部分已知bug"
+                    "1. 全新界面",
+                    "2. 添加退出登录",
+                    "3. 修复已知 bug 若干"
                 },
-                Token = Guid.NewGuid(),
-                UpdateTime = DateTime.Now,
+                Token = "75554BBFD2B72BB772D90E459DB59548",
+                UpdateTime = new DateTime(2021, 7, 20, 22, 50, 00),
             };
         }
 
@@ -76,25 +76,25 @@ namespace NovelReader {
         protected override async void OnStartup(object sender, StartupEventArgs e) {
             var ret = initTask.Result;
             if (ret) {
-                //var info = await _service.GetLatestVersionInfoAsync();
-                //if (string.Compare(info.LatestVersion, this._currentVersionInfo.LatestVersion, true) > 0) {
-                //    // 启动更新软件
-                //    var fileName = "Novel.Update.exe";
-                //    var currentDirectory = new DirectoryInfo(Directory.GetCurrentDirectory());
-                //    var allFiles = currentDirectory.GetFiles();
-                //    var file = allFiles.Where(x => x.Name == fileName).FirstOrDefault();
-                //    var process = new Process {
-                //        StartInfo = new ProcessStartInfo {
-                //            WorkingDirectory = Directory.GetCurrentDirectory(),
-                //            UseShellExecute = true,
-                //            FileName = file.FullName,
-                //            CreateNoWindow = true,
-                //            Verb = "runas"
-                //        }
-                //    };
-                //    process.Start();
-                //    return;
-                //}
+                var info = await _service.GetLatestVersionInfoAsync();
+                if (string.Compare(info.LatestVersion, this._currentVersionInfo.LatestVersion, true) > 0) {
+                    // 启动更新软件
+                    var fileName = "Novel.Update.exe";
+                    var currentDirectory = new DirectoryInfo(Directory.GetCurrentDirectory());
+                    var allFiles = currentDirectory.GetFiles();
+                    var file = allFiles.Where(x => x.Name == fileName).FirstOrDefault();
+                    var process = new Process {
+                        StartInfo = new ProcessStartInfo {
+                            WorkingDirectory = Directory.GetCurrentDirectory(),
+                            UseShellExecute = true,
+                            FileName = file.FullName,
+                            CreateNoWindow = true,
+                            Verb = "runas"
+                        }
+                    };
+                    process.Start();
+                    return;
+                }
             }
             var shell = IoC.Get<ShellViewModel>();
             var updateInfoViewModel = IoC.Get<UpdateInfoViewModel>();
