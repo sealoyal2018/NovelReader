@@ -1,5 +1,9 @@
 ## 1. 项目截图
 
+![](https://raw.githubusercontent.com/rsdte/NovelReader/dev/Snipaste_2021-07-26_23-13-41.jpg)
+![](https://raw.githubusercontent.com/rsdte/NovelReader/dev/Snipaste_2021-07-26_23-13-52jpg)
+![](https://raw.githubusercontent.com/rsdte/NovelReader/dev/Snipaste_2021-07-26_23-14-22.jpg)
+![](https://raw.githubusercontent.com/rsdte/NovelReader/dev/Snipaste_2021-07-26_23-14-36.jpg)
 
 
 ## 2. 项目说明
