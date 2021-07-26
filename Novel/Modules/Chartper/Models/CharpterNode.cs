@@ -1,10 +1,11 @@
 ﻿using Caliburn.Micro;
-using Novel.Controls.TreeListView;
+using Novel.Controls;
 using Novel.Modules.Chartper.ViewModels;
 using Novel.Modules.Document.ViewModels;
 
-namespace Novel.Modules.Chartper.Models {
-	public class CharpterNode : TreeListViewNode {
+namespace Novel.Modules.Chartper.Models
+{
+    public class CharpterNode : TreeListViewNode {
 		private readonly IEventAggregator _event;
 
 		public string Href {

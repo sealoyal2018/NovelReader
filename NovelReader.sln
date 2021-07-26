@@ -24,11 +24,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{F9B0A281-9
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Screenshots", "Screenshots", "{BEA2AD53-0569-4E6E-A6F0-8E8ADF3865C6}"
 	ProjectSection(SolutionItems) = preProject
-		login.jpg = login.jpg
-		Snipaste_2021-06-13_19-35-05.jpg = Snipaste_2021-06-13_19-35-05.jpg
-		Snipaste_2021-06-13_19-35-29.jpg = Snipaste_2021-06-13_19-35-29.jpg
-		Snipaste_2021-06-13_19-36-22.jpg = Snipaste_2021-06-13_19-36-22.jpg
-		Snipaste_2021-06-13_19-36-33.jpg = Snipaste_2021-06-13_19-36-33.jpg
+		C:\Users\RSDTE\Desktop\Snipaste_2021-07-26_23-13-41.jpg = C:\Users\RSDTE\Desktop\Snipaste_2021-07-26_23-13-41.jpg
+		C:\Users\RSDTE\Desktop\Snipaste_2021-07-26_23-13-52.jpg = C:\Users\RSDTE\Desktop\Snipaste_2021-07-26_23-13-52.jpg
+		C:\Users\RSDTE\Desktop\Snipaste_2021-07-26_23-14-22.jpg = C:\Users\RSDTE\Desktop\Snipaste_2021-07-26_23-14-22.jpg
+		C:\Users\RSDTE\Desktop\Snipaste_2021-07-26_23-14-36.jpg = C:\Users\RSDTE\Desktop\Snipaste_2021-07-26_23-14-36.jpg
 	EndProjectSection
 EndProject
 Global

@@ -1,0 +1,13 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <SolidColorBrush x:Key="DefaultPrimaryBrush" Color="{DynamicResource Default.Primary.Color}" />
+    <SolidColorBrush x:Key="LightPrimaryBrush" Color="{DynamicResource Light.Primary.Color}" />
+    <SolidColorBrush x:Key="DarkPrimaryBrush" Color="{DynamicResource Dark.Primary.Color}" />
+
+    <SolidColorBrush x:Key="DefaultAssistBrush" Color="{DynamicResource Default.Assist.Color}" />
+    <SolidColorBrush x:Key="LightAssistBrush" Color="{DynamicResource Light.Assist.Color}" />
+    <SolidColorBrush x:Key="DarkAssistBrush" Color="{DynamicResource Dark.Assist.Color}" />
+
+    <SolidColorBrush x:Key="DefaultAccentBrush" Color="{DynamicResource Default.Accent.Color}" />
+    <SolidColorBrush x:Key="LightAccentBrush" Color="{DynamicResource Light.Accent.Color}" />
+    <SolidColorBrush x:Key="DarkAccentBrush" Color="{DynamicResource Dark.Accent.Color}" />
+</ResourceDictionary>

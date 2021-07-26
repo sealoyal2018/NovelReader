@@ -51,6 +51,14 @@
                 <Grid.RenderTransform>
                     <ScaleTransform ScaleX="1" ScaleY="1" x:Name="scaleTransform" />
                 </Grid.RenderTransform>
+                <Grid.ToolTip>
+                    <ToolTip>
+                        <TextBlock
+                            HorizontalAlignment="Center"
+                            Text="{Binding Title}"
+                            VerticalAlignment="Center" />
+                    </ToolTip>
+                </Grid.ToolTip>
             </Grid>
             <DataTemplate.Triggers>
                 <EventTrigger RoutedEvent="Image.MouseEnter">

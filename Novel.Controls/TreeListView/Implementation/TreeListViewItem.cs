@@ -1,12 +1,12 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 
-namespace Novel.Controls.TreeListView {
+namespace Novel.Controls {
     public class TreeListViewItem : ListViewItem {
 
-        private Novel.Controls.TreeListView.TreeListView tree;
+        private TreeListView tree;
 
-        public Novel.Controls.TreeListView.TreeListView Tree {
+        public TreeListView Tree {
             get {
                 return tree;
             }
@@ -32,7 +32,7 @@ namespace Novel.Controls.TreeListView {
         }
 
         private void OnExpandedChanged(object sender, RoutedEventArgs e) {
-            if (ItemsControl.ItemsControlFromItemContainer(this) is Novel.Controls.TreeListView.TreeListView tree) {
+            if (ItemsControl.ItemsControlFromItemContainer(this) is TreeListView tree) {
                 tree.Reload();
             }
         }

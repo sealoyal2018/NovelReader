@@ -41,7 +41,7 @@
                 Grid.Row="2"
                 Grid.ColumnSpan="2"
                 FontSize="16"
-                Text="Copyright 2021 Sealoyal. All Rights Reserved." />
+                Text="Copyright 2021 sealoyal. All Rights Reserved." />
 
         </Grid>
     </Grid>

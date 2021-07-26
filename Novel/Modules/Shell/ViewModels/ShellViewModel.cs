@@ -2,23 +2,23 @@
 using Novel.Commands;
 using Novel.Modules.Document.ViewModels;
 using Novel.Modules.Update.ViewModels;
-using System;
+using Novel.Service;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
 
 namespace Novel.Modules.Shell.ViewModels {
     [Export(typeof(ShellViewModel))]
     [Export(typeof(IShell))]
-    public class ShellViewModel: Conductor<IDocument>.Collection.OneActive, IShell {
+    public class ShellViewModel : Conductor<IDocument>.Collection.OneActive, IShell {
         private readonly CommandBase _searchCommand;
         private bool showProgressBar;
         private bool isShowUpdateInfo;
+        private readonly BindableCollection<IDocument> _documents;
+        private readonly NovelService _service;
 
         public CommandBase SearchCommand {
             get {
@@ -50,11 +50,32 @@ namespace Novel.Modules.Shell.ViewModels {
             }
         }
 
+        public BindableCollection<IDocument> Documents {
+            get {
+                return _documents;
+            }
+        }
+
+        public NovelService Service {
+            get {
+                return _service;
+            }
+        }
+
         [ImportingConstructor]
-        public ShellViewModel(RecommendViewModel recommendViewModel) {
-            _searchCommand = new CommandBase(OpenSearch);
-            ActiveItem = recommendViewModel;
+        public ShellViewModel([ImportMany] IEnumerable<IDocument> documents, NovelService service) {
             DisplayName = "铅笔小说客户端";
+            _documents = new BindableCollection<IDocument>(documents.OrderBy(d => d.Order));
+            _searchCommand = new CommandBase(OpenSearch);
+            ActiveItem = _documents.First();
+            this._service = service;
+        }
+
+        public Task OnNavItemClick(RoutedPropertyChangedEventArgs<object> e) {
+            if (e.NewValue is IDocument item) {
+                ActiveItem = item;
+            }
+            return Task.CompletedTask;
         }
 
         public void MoveWindow() {
@@ -80,7 +101,7 @@ namespace Novel.Modules.Shell.ViewModels {
         /// 最大化
         /// </summary>
         public void MaximizeWindow() {
-            Application.Current.MainWindow.WindowState = Application.Current.MainWindow.WindowState== WindowState.Maximized? WindowState.Normal: WindowState.Maximized;
+            Application.Current.MainWindow.WindowState = Application.Current.MainWindow.WindowState == WindowState.Maximized ? WindowState.Normal : WindowState.Maximized;
         }
 
         /// <summary>
@@ -95,44 +116,30 @@ namespace Novel.Modules.Shell.ViewModels {
             ActiveItem = searchViewModel;
         }
 
-        /// <summary>
-        /// 导航栏切换内容
-        /// </summary>
-        /// <param name="e"></param>
-        public void ChangedDocument(SelectionChangedEventArgs e) {
-            ShowProgressBar = true;
-            ActiveItem = e.AddedItems[0] as IDocument;
-            ShowProgressBar = false;
+        public async Task SignInAsync() {
+            var loginViewModel = IoC.Get<LoginViewModel>();
+            var ret = await loginViewModel.ShowDialogAsync();
+            NotifyOfPropertyChange(nameof(Service));
         }
 
-        protected override async Task OnActivateAsync(CancellationToken cancellationToken) {
-            await base.OnActivateAsync(cancellationToken);
-            //var loginViewModel = IoC.Get<LoginViewModel>();
-            //await loginViewModel.ShowDialogAsync();
+        public Task SignOutAsync() {
+            this.Service.SignOut();
+            NotifyOfPropertyChange(nameof(Service));
+            return Task.CompletedTask;
         }
 
-        protected override Task OnInitializeAsync(CancellationToken cancellationToken) {
-            return base.OnInitializeAsync(cancellationToken);
-        }
 
-        protected override void OnViewReady(object view) {
-            base.OnViewReady(view);
-        }
-
-        public override Task ActivateItemAsync(IDocument item, CancellationToken cancellationToken = default) {
-            return base.ActivateItemAsync(item, cancellationToken);
-        }
         protected override async void OnViewLoaded(object view) {
             base.OnViewLoaded(view);
             if (IsShowUpdateInfo) {
                 var updateView = IoC.Get<UpdateInfoViewModel>();
                 await updateView.ShowDialogAsync();
             }
-            //var loginViewModel = IoC.Get<LoginViewModel>();
-            //var ret = await loginViewModel.ShowDialogAsync();
-            //if (!ret) {
-            //    await TryCloseAsync();
-            //}
+            /*var loginViewModel = IoC.Get<LoginViewModel>();
+            var ret = await loginViewModel.ShowDialogAsync();
+            if (!ret) {
+                await TryCloseAsync();
+            }*/
         }
 
     }

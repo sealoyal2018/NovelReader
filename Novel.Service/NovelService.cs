@@ -30,6 +30,8 @@ namespace Novel.Service {
         /// </summary>
         private readonly RestClient _restClient;
 
+        public bool IsLogin => cookies != null && cookies.Count > 0;
+
         /// <summary>
         /// 构建 NovelService 对象
         /// </summary>
@@ -40,6 +42,7 @@ namespace Novel.Service {
             _restClient = new RestClient("https://www.23qb.net/");
             _restClient.AddDefaultHeader("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36 Edg/90.0.818.66");
         }
+
 
         /// <summary>
         /// 注册
@@ -61,7 +64,7 @@ namespace Novel.Service {
         /// </summary>
         /// <param name="login">登录相关信息</param>
         /// <returns></returns>
-        public async Task<bool> Login(Login login) {
+        public async Task<bool> SignIn(Login login) {
             var loginUrl = "/login.php?do=submit";
             var req = new RestRequest(loginUrl, Method.POST);
             var data = $"username={login.UserName}&password={login.Password}&usecookie=2592000&action=login&submit={EncodeGBK("登录")}";
@@ -76,6 +79,15 @@ namespace Novel.Service {
                 return true;
             }
             return false;
+        }
+
+        /// <summary>
+        /// 退出登录
+        /// </summary>
+        /// <returns></returns>
+        public Task SignOut() {
+            this.cookies.Clear();
+            return Task.CompletedTask;
         }
 
         /// <summary>

@@ -1,4 +1,4 @@
-﻿using System.ComponentModel.Composition;
+using System.ComponentModel.Composition;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
@@ -10,6 +10,7 @@ using Novel.Service.Models;
 namespace Novel.Modules.Chartper.ViewModels {
     
     [Export(typeof(ContentViewModel))]
+    [PartCreationPolicy(CreationPolicy.NonShared)]
     public class ContentViewModel : Screen, IChartper, IHandle<string> {
         private string title;
         private readonly FlowDocument _document;

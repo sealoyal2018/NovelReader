@@ -1,4 +1,5 @@
-using Novel.Update.Service;
+using Novel.Update.Models;
+using Novel.Update.Services;
 using NUnit.Framework;
 using System;
 using System.Diagnostics;
@@ -13,13 +14,26 @@ namespace Novel.TestProj {
         [Test]
         public void Test1() {
             VersionInfo info = new VersionInfo {
-                LatestVersion = "0.2.0.210610",
+                LatestVersion = "0.3.1",
                 Summary = new System.Collections.Generic.List<string> {
-                    "1.���Ӹ��¹���",
-                    "2.�޸�������֪bug"
+                    "1. 全新界面",
+                    "2. 添加退出登录",
+                    "3. 修复已知 bug 若干"
                 },
-                Token = Guid.NewGuid(),
-                UpdateTime = DateTime.Now,
+                Token = "75554BBFD2B72BB772D90E459DB59548",
+                UpdateTime = new DateTime(2021, 7, 20, 22, 50, 00),
+                OldVersionInfo = new System.Collections.Generic.List<VersionInfo> {
+                    new VersionInfo {
+                        LatestVersion = "0.2.0.210610",
+                        Summary = new System.Collections.Generic.List<string> {
+                            "1.添加登录功能",
+                            "2.添加更新功能",
+                            "3.修复部分已知bug"
+                        },
+                        Token = "AB11CD635C564C9A138F07B6B0E6D34A",
+                        UpdateTime = new DateTime(2021, 6,10, 22,11,48),
+                    }
+                }
             };
             var data = System.Text.Json.JsonSerializer.Serialize(info, new JsonSerializerOptions() { 
                 Encoder = System.Text.Encodings.Web.JavaScriptEncoder.Create(UnicodeRanges.All),

@@ -52,7 +52,7 @@ namespace Novel.Modules.Document.ViewModels {
         }
 
         public override async Task ConfirmAsync() {
-            var ret = await this.service.Login(new Service.Models.Login { Password = Password, UserName = UserName });
+            var ret = await this.service.SignIn(new Service.Models.Login { Password = Password, UserName = UserName });
             if (ret)
                 await base.ConfirmAsync();
             else {

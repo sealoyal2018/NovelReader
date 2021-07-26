@@ -6,25 +6,22 @@ using System.ComponentModel.Composition;
 using System.Threading;
 using System.Threading.Tasks;
 using Caliburn.Micro;
-using Novel.Controls.TreeListView;
+using Novel.Controls;
 using Novel.Modules.Chartper;
 using Novel.Modules.Chartper.Models;
 using Novel.Modules.Chartper.ViewModels;
-using Novel.Modules.Shell.ViewModels;
 using Novel.Service;
 using Novel.Service.Models;
 
-namespace Novel.Modules.Document.ViewModels {
-    [Export(typeof(ActicleContentViewModel))]
-	public class ActicleContentViewModel: Conductor<IChartper>, IDocument {
-        
-		/// <summary>
-		/// 小说服务
-		/// </summary>
-		private readonly NovelService _service;
+namespace Novel.Modules.Document.ViewModels
+{
 
+    [Export(typeof(ActicleContentViewModel))]
+    public class ActicleContentViewModel : Conductor<IChartper>, IDocument {
+        private readonly NovelService _service;
         private readonly DefaultCharpterViewModel _defaultCharpterViewModel;
         private TreeListViewNode root;
+        private readonly string _title = "章节";
 
         /// <summary>
         /// 当前小说信息
@@ -40,7 +37,7 @@ namespace Novel.Modules.Document.ViewModels {
                 NotifyOfPropertyChange();
             }
         }
-        
+
         public NovelInfo Novel {
             get {
                 return novel;
@@ -52,6 +49,24 @@ namespace Novel.Modules.Document.ViewModels {
                 _defaultCharpterViewModel.Novel = novel;
                 NotifyOfPropertyChange(nameof(Novel));
                 NotifyOfPropertyChange(nameof(Root));
+            }
+        }
+
+        public string Name {
+            get {
+                return _title;
+            }
+        }
+
+        public string TipText {
+            get {
+                return _title;
+            }
+        }
+
+        public int Order {
+            get {
+                return 90;
             }
         }
 
@@ -69,17 +84,14 @@ namespace Novel.Modules.Document.ViewModels {
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
         protected override async Task OnActivateAsync(CancellationToken cancellationToken) {
+            if(ActiveItem != _defaultCharpterViewModel) {
+                ActiveItem = _defaultCharpterViewModel;
+            }
             var ret = await this._service.GetCharpters(this.Novel.Href);
-            ret.ForEach(x=> Root.Children.Add(new CharpterNode(x.Title, root){Href = x.Href}));
+            ret.ForEach(x => Root.Children.Add(new CharpterNode(x.Title, root) { Href = x.Href }));
             Root.IsExpanded = true;
             await base.OnActivateAsync(cancellationToken);
             NotifyOfPropertyChange(nameof(Root));
-        }
-
-        public void ToContent(NovelCharpter charpter) {
-            // var shell = IoC.Get<ShellViewModel>();
-            // this._contentViewModel.Href = charpter.Href;
-            // shell.ActiveItem = this._contentViewModel;
         }
     }
 }

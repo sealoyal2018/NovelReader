@@ -1,9 +1,10 @@
-<ResourceDictionary
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:local="clr-namespace:Novel.Controls"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="/Novel.Controls;component/Themes/Style/IconButton.xaml" />
-        <ResourceDictionary Source="/Novel.Controls;component/Themes/Style/TreeListView.xaml" />
+        <ResourceDictionary Source="/Novel.Controls;component/Themes/Brushes/Colors/LightColor.xaml" />
+        <ResourceDictionary Source="/Novel.Controls;component/Themes/Brushes/LightBrush.xaml" />
+        <ResourceDictionary Source="/Novel.Controls;component/FontIconButton/Styles/FontIconButton.xaml" />
+        <ResourceDictionary Source="/Novel.Controls;component/TreeListView/Styles/TreeListView.xaml" />
+        <ResourceDictionary Source="/Novel.Controls;component/FlatToolTip/Styles/FlatToolTip.xaml" />
+        <ResourceDictionary Source="/Novel.Controls;component/FloatingActionButton/Styles/FloatingActionButton.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

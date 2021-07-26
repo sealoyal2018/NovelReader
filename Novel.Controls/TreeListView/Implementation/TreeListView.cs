@@ -2,7 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 
-namespace Novel.Controls.TreeListView {
+namespace Novel.Controls {
     public class TreeListView : ListView {
 
         public static readonly DependencyProperty RootProperty;

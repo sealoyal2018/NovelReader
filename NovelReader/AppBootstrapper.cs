@@ -26,14 +26,14 @@ namespace NovelReader {
             _service = new YSService();
             this.Initialize();
             _currentVersionInfo = new VersionInfo {
-                LatestVersion = "0.2.0.210612",
+                LatestVersion = "0.3.1",
                 Summary = new List<string> {
-                    "1.添加登录功能",
-                    "2.添加更新功能",
-                    "3.修复部分已知bug"
+                    "1. 全新界面",
+                    "2. 添加退出登录",
+                    "3. 修复已知 bug 若干"
                 },
-                Token = Guid.NewGuid(),
-                UpdateTime = DateTime.Now,
+                Token = "75554BBFD2B72BB772D90E459DB59548",
+                UpdateTime = new DateTime(2021, 7, 20, 22, 50, 00),
             };
         }
 

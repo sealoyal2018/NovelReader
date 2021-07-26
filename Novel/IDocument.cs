@@ -7,5 +7,8 @@ using System.Threading.Tasks;
 
 namespace Novel {
     public interface IDocument {
+        public string Name { get;  }
+        public string TipText { get; }
+        public int Order { get; }
     }
 }
