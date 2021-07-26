@@ -1,49 +1,21 @@
-
-## 1. ÏîÄ¿½çÃæÕ¹Ê¾
-![µÇÂ¼](https://github.com/sealoyal-pu/NovelReader/blob/master/login.jpg)
-
-![¹ØÓÚÈí¼ş](https://github.com/sealoyal-pu/NovelReader/blob/master/Snipaste_2021-06-13_19-35-05.jpg)
-
-![ËÑË÷](https://github.com/sealoyal-pu/NovelReader/blob/master/Snipaste_2021-06-13_19-35-29.jpg)
-
-![ÕÂ½ÚÄ¿Â¼](https://github.com/sealoyal-pu/NovelReader/blob/master/Snipaste_2021-06-13_19-36-22.jpg)
-
-![Ğ¡ËµÄÚÈİ](https://github.com/sealoyal-pu/NovelReader/blob/master/Snipaste_2021-06-13_19-36-33.jpg)
+## 1. é¡¹ç›®æˆªå›¾
 
 
 
-## 2. ÏîÄ¿ËµÃ÷
+## 2. é¡¹ç›®è¯´æ˜
 
-±¾ÏîÄ¿ÓÉ wpf for .net5 Ç¿Á¦Çı¶¯
+æœ¬é¡¹ç›®ç”± wpf for .net5 å¼ºåŠ›é©±åŠ¨
 
-Êı¾İÀ´Ô´ [Ç¦±ÊĞ¡ËµÍø](http://www.qb123.net)
+æ•°æ®æ¥æº é“…ç¬”å°è¯´ç½‘
 
-Èí¼ş¸üĞÂ·şÎñÆ÷, ¸ĞĞ»[ÓÀË¶EÅÌ](http://www.ys168.com/)Ìá¹©·şÎñ
+è½¯ä»¶æ›´æ–°æœåŠ¡å™¨, æ„Ÿè°¢æ°¸ç¡•Eç›˜æä¾›æœåŠ¡
 
-ÏîÄ¿µÚÈı·½¿âÊ¹ÓÃÇé¿ö
-- Caliburn.Micro 4.0.173
-- HandyControl 3.1.0
-- RestClient 106.11.7
-- zipstorer 3.6.0
-- HtmlAgilityPack 1.11.33
-- System.ComponentModel.Composition 5.0.0
+é¡¹ç›®ç¬¬ä¸‰æ–¹åº“ä½¿ç”¨æƒ…å†µ
+   - Caliburn.Micro 4.0.173
+   - HandyControl 3.1.0
+   - RestClient 106.11.7
+   - zipstorer 3.6.0
+   - HtmlAgilityPack 1.11.33
+   - System.ComponentModel.Composition 5.0.0
 
-¸ĞĞ»ÒÔÉÏµÚÈı·½¿â¿ª·¢ÈËÔ±
-
-## 3. ÏîÄ¿Íê³É¶È
-
-ÒÑÍê³ÉÄ£¿é
-- Èí¼ş°²×°
-- Èí¼şĞ¶ÔØ
-- Èí¼ş¸üĞÂ
-- Èí¼şµÇÂ¼
-- ËÑË÷Ğ¡Ëµ
-
-´ıÍê³ÉÄ£¿é
-- Èí¼ş×¢²á
-- ...
-
-
-
-
-
+æ„Ÿè°¢ä»¥ä¸Šç¬¬ä¸‰æ–¹åº“å¼€å‘äººå‘˜
